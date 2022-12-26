@@ -1,14 +1,16 @@
 import React from "react";
 import Post from "./Post";
-import styled from 'styled-components';
-import { StFlexColumn } from "../../ui/layout/FlexColumn";
-import FlexColumn from "../../ui/layout/FlexColumn";
+import styled from "styled-components";
+import { StFlexColumn } from "../../components/ui/layout/FlexColumn";
+import FlexColumn from "../../components/ui/layout/FlexColumn";
+import { storyMock } from "../../asset/main";
+import Card from "../ui/layout/Card";
 
 const PostList = () => {
-  const arr = new Array(10).fill("mock data");
-  console.log(arr)
+  const arr = new Array(100).fill("mock data");
+  console.log(arr);
   return (
-    <FlexColumn style={{gap:'1rem'}}>
+    <FlexColumn gap={'2rem'}>
       {arr.map((mock, index) => (
         <Post key={index} />
       ))}
@@ -19,6 +21,5 @@ const PostList = () => {
 export default PostList;
 
 const MyColumn = styled(StFlexColumn)`
-    /* gap: 1rem; */
-
-`
+  /* gap: 1rem; */
+`;
