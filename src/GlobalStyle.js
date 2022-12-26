@@ -6,11 +6,45 @@ const GlobalStyle = createGlobalStyle`
 
 
   :root{
-    --ig-secondary-background : #121212;
     --ig-primary-background : #000000;
-    --ig-primary-text: #FAFAFA;
+    --ig-secondary-background : #121212;
+
     --ig-elevated-separator: #363636;
-    }
+    --ig-elevated-background:#262626;
+
+    --ig-primary-logo: invert(99%) sepia(3%) saturate(4%) hue-rotate(233deg) brightness(101%) contrast(101%);
+    --ig-secondary-logo: invert(14%) sepia(11%) saturate(1442%) hue-rotate(315deg) brightness(91%) contrast(101%);
+
+    --ig-primary-text: #fafafa;
+    --ig-secondary-text: #000000;
+    --ig-third-text:#8E8E8E;
+
+    
+    --ig-primary-button-background: #0095F6;
+    --ig-primary-button-hover: #1877F2;
+    
+    --ig-secondary-button-background:#EFEFEF;
+    --ig-secondary-button-hover : #DBDBDB;
+
+
+    --ig-light-theme-background : #FAFAFA;
+    --ig-light-theme-text: #8E8E8E;
+    --ig-light-theme-secondary-text: #262626;
+    --ig-light-theme-separator:#DBDBDB;
+    
+
+    --color-yellow: #F8D706;
+    --color-gray: #B2B2B2;
+    --color-primary: #2E90FA;
+    --color-primary-invalid:#B2DDFF;
+    --color-light-gray:#7F7F7F;
+    --color-black:#2F1B1A;
+    --color-white:#FFFFFF;
+    --color-red:#F04438;
+    --color-subtle-gray:#CCCCCC;
+
+
+  }
 
   html {
     font-size: 62.5%; // 1rem = 10px 로 변경 한 것
@@ -30,11 +64,26 @@ const GlobalStyle = createGlobalStyle`
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     font-size: 1.4rem;
-    color: var(--ig-primary-text);
+    color: var(--ig-secondary-text);
     background-color: var(--ig-primary-background);
     width: 100vw;
     height: 100vh;
     font-weight: 600;
+    h1{
+      font-size: 2.2rem;
+    }
+    h2{
+      font-size: 1.6rem;
+    }
+    h3 { 
+      font-size:1.2rem;
+    }
+    .primary-text { 
+      color :var(--ig-primary-text);
+    }
+    .third-text { 
+      color :var(--ig-third-text);
+    }
   }
   
   

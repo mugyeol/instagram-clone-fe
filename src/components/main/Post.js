@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "../../ui/layout/Card";
-import FlexColumn from "../../ui/layout/FlexColumn";
+import Card from "../../components/ui/layout/Card";
+import FlexColumn from "../../components/ui/layout/FlexColumn";
 const Post = () => {
   return (
-    <Fragment>
-      <div className="test"></div>
     <Card pd="1rem" border="1px solid var(--ig-elevated-separator)">
       <FlexColumn>mock data</FlexColumn>
     </Card>
-    </Fragment>
   );
 };
 
