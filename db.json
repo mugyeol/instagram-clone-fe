@@ -1,0 +1,46 @@
+{
+  "insta": [
+    {
+      "id": 1,
+      "contents": "대한민국 사랑합니다.",
+      "likeCount": 30000,
+      "nickname": "hm_son7",
+      "commentCount": 2,
+      "postingLike": false,
+      "hashtagList": ["", ""],
+      "createdAt": "String",
+      "modifiedAt": "String",
+      "imgList": [
+        {
+          "postingImgNum": 1,
+          "postingImg": "Img url"
+        },
+        {
+          "postingImgNum": 2,
+          "postingImg": "Img url"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "contents": "나는 최강 수비수",
+      "likeCount": 20000,
+      "nickname": "김민재",
+      "commentCount": 2,
+      "postingLike": false,
+      "hashtagList": ["", ""],
+      "createdAt": "String",
+      "modifiedAt": "String",
+      "imgList": [
+        {
+          "postingImgNum": 1,
+          "postingImg": "Img url"
+        },
+        {
+          "postingImgNum": 2,
+          "postingImg": "Img url"
+        }
+      ]
+    }
+  ]
+}
