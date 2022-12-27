@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../../components/ui/layout/Card";
 import FlexColumn from "../../components/ui/layout/FlexColumn";
-const Post = () => {
-  return (
+import { AiFillHeart, AiOutlineHeart, AiFillSmile } from "react-icons/ai";
+import { IoPaperPlaneOutline, IoChatbubbleOutline } from "react-icons/io5";
+import { FiBookmark } from "react-icons/fi";
+import axios from "axios";
 
+const Post = () => {
+  const [like, setLike] = useState(false);
+
+  return (
     <Fragment>
       <Card pd="1rem" border="1px solid var(--ig-elevated-separator)">
         <FlexColumn>
@@ -33,32 +39,29 @@ const Post = () => {
             />
             <div class="post-content">
               <div class="reaction-wrapper">
-                <button>좋아요</button>
-                <img
-                  src="https://cdn-icons-png.flaticon.com/128/54/54467.png"
-                  class="icon"
-                  alt=""
-                />
-                <img
-                  src="https://cdn-icons-png.flaticon.com/128/5661/5661670.png"
-                  class="icon"
-                  alt=""
-                />
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/5705/5705808.png"
-                  class="save icon"
-                  alt=""
-                />
+                <button className="btn1">
+                  <AiOutlineHeart style={{ width: "24", height: "24" }} />
+                </button>
+                <button>
+                  <IoChatbubbleOutline style={{ width: "24", height: "24" }} />
+                </button>
+                <button>
+                  <IoPaperPlaneOutline style={{ width: "24", height: "24" }} />
+                </button>
+                <button className="btn4">
+                  <FiBookmark style={{ width: "24", height: "24" }} />
+                </button>
               </div>
               <p class="likes">좋아요 1,012 개</p>
               <p class="description">
                 <span>hm_son7 </span> 국민 여러분들 덕분에 이렇게 재밋는 축구를
                 할수 있어서 감사합니다 사랑합니다!!! 대한민국!!!
               </p>
-              <p class="post-time">2 minutes ago</p>
             </div>
             <div class="comment-wrapper">
-              <img src="img/smile.PNG" class="icon" alt="" />
+              <button>
+                <AiFillSmile className="smil" />
+              </button>
               <input
                 type="text"
                 class="comment-box"
@@ -155,6 +158,7 @@ const Fragment = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid var(--ig-elevated-background);
   }
 
   .comment-wrapper .icon {
@@ -168,6 +172,7 @@ const Fragment = styled.div`
     border: none;
     outline: none;
     font-size: 14px;
+    background-color: transparent;
   }
 
   .comment-btn,
@@ -191,16 +196,54 @@ const Fragment = styled.div`
     align-items: center;
   }
 
-  .reaction-wrapper .icon {
-    height: 25px;
-    margin: 0;
-    margin-right: 20px;
-    filter: invert(100%) sepia(0%) saturate(7493%) hue-rotate(248deg)
-      brightness(97%) contrast(101%);
+  .reaction-wrapper > button {
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    filter: invert(100%);
+  }
+
+  .reaction-wrapper > button :hover {
+    fill: var(--ig-elevated-separator);
   }
 
   .reaction-wrapper .icon.save {
     margin-left: auto;
+  }
+
+  .btn4 {
+    border: 0;
+    display: inline-block;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    margin-left: auto;
+    margin-right: -10px;
+    padding: 0;
+    vertical-align: baseline;
+  }
+
+  .comment-wrapper > button {
+    align-items: center;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    filter: invert(0%);
+  }
+
+  .comment-wrapper > button:hover {
+    fill: var(--ig-elevated-separator);
+  }
+
+  .smil {
+    width: 24px;
+    height: 24px;
   }
 `;
 // 현재의 FlexColum, FlexRow, Card에 props추가 해야하는 경우
