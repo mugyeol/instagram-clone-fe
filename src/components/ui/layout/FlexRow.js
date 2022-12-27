@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 const FlexRow = (props) => {
   
-  const onClickHandler = ()=>{
-    props.onClick()
-  }
+  // const onClickHandler = ()=>{
+  //   props.onClick()
+  // }
 
 
   return (
-    <StFlexRow onClick={onClickHandler} mg={props.mg} pd={props.pd} gap={props.gap} justify={props.justify} align={props.align}>
+    <StFlexRow className={props.className} onClick={props.onClick} mg={props.mg} pd={props.pd} gap={props.gap} justify={props.justify} align={props.align}>
       {props.children}
     </StFlexRow>
   );

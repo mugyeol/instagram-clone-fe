@@ -1,9 +1,8 @@
 import React from "react";
 import { profile } from "../../asset/navbar";
-import FlexColumn from "../ui/layout/FlexColumn";
 import { CircleImg } from "../ui/elem/CircleImg";
 import Card from "../ui/layout/Card";
-import { flexStart, sepearator } from '../ui/layout/className';
+import { flexStart} from '../ui/layout/className';
 import FlexRow from "../ui/layout/FlexRow";
 
 const Accounts = () => {

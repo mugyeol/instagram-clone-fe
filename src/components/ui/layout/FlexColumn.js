@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const FlexColumn = (props) => {
-  return <StFlexColumn mg={props.mg} pd={props.pd} gap={props.gap} justify={props.justify} align={props.align}>{props.children}</StFlexColumn>;
+  return <StFlexColumn className={props.className} mg={props.mg} pd={props.pd} gap={props.gap} justify={props.justify} align={props.align}>{props.children}</StFlexColumn>;
 };
 
 export default FlexColumn;
