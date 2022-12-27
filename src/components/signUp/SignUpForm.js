@@ -110,7 +110,7 @@ const SignUpForm = ({ isLogin }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const form = {
-      loginId: loginIdState.value,
+      email: loginIdState.value,
       username: usernameState.value,
       nickname: nicknameState.value,
       password: passwordState.value,

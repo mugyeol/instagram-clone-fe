@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 const PrimaryButton = (props) => {
   const onClickHandler = (e) => {
-    props.onClick(e);
+    // props.onClick(e);
   };
 
   return (
@@ -12,7 +12,7 @@ const PrimaryButton = (props) => {
       fontSize={props.fontSize}
       name={props.name}
       type={props.type || "button"}
-      onClick={onClickHandler}
+      onClick={props.onClick}
       mg={props.mg}
       bg={props.bg}
       disabled={props.disabled}

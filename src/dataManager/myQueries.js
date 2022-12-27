@@ -3,13 +3,13 @@ import myAxios from "./myAxios";
 
 // login
 export const $signUp = async (form) => {
-  return await myAxios.post(`/user/signup`, form);
+  return await myAxios.post(`/api/member/signup`, form);
 };
 export const $login = async (form) => {
-  return await myAxios.post(`/user/login`, form);
+  return await myAxios.post(`/api/member/login`, form);
 };
 export const $kakaoLogin = async (code) => {
-  return await myAxios.get(`/user/login/kakao?code=${code}`);
+  return await myAxios.get(`/api/member/login/kakao?code=${code}`);
 };
 
 //data request

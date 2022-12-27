@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     --ig-secondary-background : #121212;
 
     --ig-elevated-separator: #363636;
-    --ig-elevated-background:#262626;
+    --ig-elevated-background:#262626; //38 38 38
 
     --ig-primary-logo: invert(99%) sepia(3%) saturate(4%) hue-rotate(233deg) brightness(101%) contrast(101%);
     --ig-secondary-logo: invert(14%) sepia(11%) saturate(1442%) hue-rotate(315deg) brightness(91%) contrast(101%);
@@ -64,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     font-size: 1.4rem;
-    color: var(--ig-secondary-text);
+    color: var(--ig-primary-text);
     background-color: var(--ig-primary-background);
     width: 100vw;
     height: 100vh;
@@ -76,7 +76,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 1.6rem;
     }
     h3 { 
-      font-size:1.2rem;
+      font-size:1.4rem;
     }
     .primary-text { 
       color :var(--ig-primary-text);
