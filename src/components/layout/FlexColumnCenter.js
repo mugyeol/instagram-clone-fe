@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const FlexColumnCenter = (props) => {
-  const onClickHandler = ()=>{
-    props.onClick()
-  }
+  const onClickHandler = () => {
+    props.onClick();
+  };
   switch (props.type) {
     case "add-body":
       return <AddBody {...props}>{props.children}</AddBody>;
@@ -16,19 +16,11 @@ const FlexColumnCenter = (props) => {
       return <LoginFlexColumn {...props}>{props.children}</LoginFlexColumn>;
     case "addpost-content":
       return <AddPostContent {...props}>{props.children}</AddPostContent>;
+    case "replies":
+      return <ReplyContainer {...props}>{props.children}</ReplyContainer>;
     default:
       return (
-        <StFlexColumnCenter
-          wd={props.wd}
-          mg={props.mg}
-          pd={props.pd}
-          gap={props.gap}
-          justify={props.justify}
-          align={props.align}
-          className={props.className}
-        >
-          {props.children}
-        </StFlexColumnCenter>
+        <StFlexColumnCenter {...props}>{props.children}</StFlexColumnCenter>
       );
   }
 };
@@ -69,4 +61,12 @@ const AddPostContent = styled(StFlexColumnCenter)`
   align-items: flex-start;
   padding: 2rem;
   gap: 2rem;
+`;
+const ReplyContainer = styled(AddPostContent)`
+  border-bottom: 1px solid var(--ig-elevated-seperator);
+  border-top: 1px solid var(--ig-elevated-seperator);
+  height: 100%;
+  padding: 0 var(--ig-post-padding)
+
+  
 `;

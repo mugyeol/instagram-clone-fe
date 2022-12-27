@@ -6,7 +6,7 @@ export const modify = (text) => {
     if (string.includes("#") || string.includes("@")) {
       return (
         <>
-          <StLink to={`/${string}`}>{string+`\n`}</StLink>
+          <StLink to={`/${string}`}>{string}</StLink>
           <span> </span>
         </>
       );

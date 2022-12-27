@@ -20,7 +20,11 @@ function ModalWrapper({ children, type = "addPost" }) {
     };
   }, []);
 
-  const MODAL_WRAPPERS = { addPost: AddPostWrap, addPostImg: AddPostImgWrap };
+  const MODAL_WRAPPERS = {
+    addPost: AddPostWrap,
+    addPostImg: AddPostImgWrap,
+    detail: DetailWrap,
+  };
 
   const Wrapper = MODAL_WRAPPERS[type];
 
@@ -69,5 +73,12 @@ const AddPostWrap = styled.div`
 const AddPostImgWrap = styled(AddPostWrap)`
   width: 95rem;
   height: 60rem;
+`;
+const DetailWrap = styled(AddPostWrap)`
+  width: 65%;
+  height: 85%;
+  background-color: var(--ig-primary-background);
+  border: 1px solid white;
+  overflow: hidden;
 `;
 export default ModalWrapper;

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import PrimaryButton from "../elem/PrimaryButton";
-import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
-import FlexRowCenter from "../ui/layout/FlexRowCenter";
+import FlexColumnCenter from "../layout/FlexColumnCenter";
+import FlexRowCenter from "../layout/FlexRowCenter";
 import { addPostMsg } from "../../dataManager/messageVariables";
 import { addPostIcon } from "../../asset/addpost";
 import ModalWrapper from "../../modal/Modal";
@@ -20,6 +20,7 @@ const AddPost = () => {
     }
     // uploadFileToS3(e.target.files[0])
     //   .then((data) => {
+    //     console.log('data location',data.Location)
     //     data.Location &&
     //       openModal({ type: "addPostImg", props: {url:data.Location} });
     //   })

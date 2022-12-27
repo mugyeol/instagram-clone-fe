@@ -10,7 +10,7 @@ import {
 } from "../../asset/login/index";
 import { connectKakao } from "../signIn/funcs";
 import { $signUp } from "../../dataManager/myQueries";
-import { StCard } from "../ui/layout/Card";
+import { StCard } from "../layout/Card";
 import {
   chatLogo,
   lockLogo,
@@ -28,9 +28,9 @@ import {
   __typeNickname,
   __typePassword,
 } from "../../redux/modules/signUpSlice";
-import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
-import { flexCenter } from "../ui/layout/className";
-import FlexRowCenter from "../ui/layout/FlexRowCenter";
+import FlexColumnCenter from "../layout/FlexColumnCenter";
+import { flexCenter } from "../layout/className";
+import FlexRowCenter from "../layout/FlexRowCenter";
 import PrimaryButton from "../elem/PrimaryButton";
 import Img from "../elem/Img";
 

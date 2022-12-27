@@ -44,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
     --color-subtle-gray:#CCCCCC;
 
     --ig-width-addpost-img-wrapper:60rem; 
+    --ig-post-padding:1.7rem;
 
 
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import FlexRowCenter from "../ui/layout/FlexRowCenter";
-import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
+import FlexRowCenter from "../layout/FlexRowCenter";
+import FlexColumnCenter from "../layout/FlexColumnCenter";
 const Footer = ({ isLogin }) => {
   const arr1 = [
     "Meta",

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import FlexRowCenter from "../../ui/layout/FlexRowCenter";
-import SideBar from "../../sidebar/SideBar";
+import FlexRowCenter from "./FlexRowCenter";
+import SideBar from "../sidebar/SideBar";
 
 const Layout = ({ children }) => {
   return (

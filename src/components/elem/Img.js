@@ -20,6 +20,8 @@ const Img = (props) => {
       return <LoginRightIcon src={props.src} />;
     case "kakao-chat":
       return <KakaoChatIcon src={props.src} />;
+    case "detail-image":
+      return <DetailImage src={props.src} />;
     default:
       return <StImg src={props.src} />;
   }
@@ -70,4 +72,8 @@ const KakaoChatIcon = styled.img`
   width: 1.8rem;
   height: 1.8rem;
   filter: var(--ig-secondary-logo);
+`
+const DetailImage = styled.img`
+  width: 100%;
+  height: 100%;
 `

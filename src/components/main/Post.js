@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Card from "../../components/ui/layout/Card";
-import FlexColumn from "../../components/ui/layout/FlexColumn";
+import Card from "../../components/layout/Card";
+import FlexColumn from "../../components/layout/FlexColumn";
 import { AiFillHeart, AiOutlineHeart, AiFillSmile } from "react-icons/ai";
 import { IoPaperPlaneOutline, IoChatbubbleOutline } from "react-icons/io5";
 import { FiBookmark } from "react-icons/fi";

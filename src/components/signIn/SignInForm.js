@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closedEye, openEye } from "../../asset/login/index";
 import { connectKakao } from "./funcs";
 import { $login } from "../../dataManager/myQueries";
-import { StCard } from "../ui/layout/Card";
+import { StCard } from "../layout/Card";
 import {
   chatLogo,
   lockLogo,
@@ -18,9 +18,9 @@ import {
   __showPwd,
   __cleanUp,
 } from "../../redux/modules/signInSlice.js";
-import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
-import { flexCenter } from "../ui/layout/className";
-import FlexRowCenter from "../ui/layout/FlexRowCenter";
+import FlexColumnCenter from "../layout/FlexColumnCenter";
+import { flexCenter } from "../layout/className";
+import FlexRowCenter from "../layout/FlexRowCenter";
 import PrimaryButton from "../elem/PrimaryButton";
 import Img from "../elem/Img";
 

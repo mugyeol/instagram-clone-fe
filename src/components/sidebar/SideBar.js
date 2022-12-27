@@ -1,16 +1,17 @@
 import React from "react";
-import Card from "../../components/ui/layout/Card";
-import FlexColumnCenter from "../../components/ui/layout/FlexColumnCenter";
+import Card from "../../components/layout/Card";
+import FlexColumnCenter from "../../components/layout/FlexColumnCenter";
 import {profile } from "../../asset/navbar";
-import { flexStart } from "../../components/ui/layout/className";
+import { flexStart } from "../../components/layout/className";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../Router";
 import useModal from "../../modal/hooks/useModal";
 import { AiOutlinePlusSquare, AiOutlineHome } from "react-icons/ai";
 import styled from "styled-components";
 import { instagram } from "../../asset/navbar";
-import FlexRowCenter from "../ui/layout/FlexRowCenter";
+import FlexRowCenter from "../layout/FlexRowCenter";
 import Img from "../elem/Img";
+import {CiSettings} from 'react-icons/ci'
 const SideBar = () => {
   const navigate = useNavigate();
   const { openModal } = useModal();
@@ -35,6 +36,12 @@ const SideBar = () => {
             <FlexRowCenter type='side-nav-wrap' onClick={() => navigate(PATH.main)}>
               <AiOutlineHome size={30} />
               <h2>홈</h2>
+            </FlexRowCenter>
+          </Card>
+          <Card type="sideBarItem">
+            <FlexRowCenter type='side-nav-wrap' onClick={() => openModal({type:'detail'})}>
+              <CiSettings size={30} />
+              <h2>상세 작업중</h2>
             </FlexRowCenter>
           </Card>
           <Card type="sideBarItem">

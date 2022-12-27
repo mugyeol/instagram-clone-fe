@@ -3,9 +3,9 @@ import React from "react";
 import { appStore, googlePlay } from "../../asset/login";
 import { useNavigate } from "react-router-dom";
 import styled, {css} from "styled-components";
-import { StCard } from "../ui/layout/Card";
-import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
-import FlexRowCenter from "../ui/layout/FlexRowCenter";
+import { StCard } from "../layout/Card";
+import FlexColumnCenter from "../layout/FlexColumnCenter";
+import FlexRowCenter from "../layout/FlexRowCenter";
 import Img from "../elem/Img";
 
 const SignUpFooter = ({ isLogin, isSignIn }) => {

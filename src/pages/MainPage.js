@@ -1,8 +1,8 @@
 import React from "react";
 import Accounts from "../components/main/Accounts";
 import PostList from "../components/main/PostList";
-import FlexRowCenter from "../components/ui/layout/FlexRowCenter";
-import Layout from "../components/ui/layout/Layout";
+import FlexRowCenter from "../components/layout/FlexRowCenter";
+import Layout from "../components/layout/Layout";
 
 const MainPage = () => {
   return (

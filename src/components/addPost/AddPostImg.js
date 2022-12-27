@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import FlexColumnCenter from "../../components/ui/layout/FlexColumnCenter";
-import FlexRowCenter from "../../components/ui/layout/FlexRowCenter";
+import FlexColumnCenter from "../../components/layout/FlexColumnCenter";
+import FlexRowCenter from "../../components/layout/FlexRowCenter";
 import { addPostMsg } from "../../dataManager/messageVariables";
 import ModalWrapper from "../../modal/Modal";
 import Img from "../elem/Img";
