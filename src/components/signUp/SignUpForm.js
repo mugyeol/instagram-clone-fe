@@ -19,7 +19,6 @@ import {
   check,
   xMark,
 } from "../../asset/login/index";
-import { IconImg } from "../ui/elem/IconImg";
 import {
   __cleanUp,
   __showPwd,
@@ -32,7 +31,8 @@ import {
 import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
 import { flexCenter } from "../ui/layout/className";
 import FlexRowCenter from "../ui/layout/FlexRowCenter";
-import PrimaryButton from "../ui/elem/PrimaryButton";
+import PrimaryButton from "../elem/PrimaryButton";
+import Img from "../elem/Img";
 
 //하단 메세지
 // const messages = {
@@ -118,7 +118,7 @@ const SignUpForm = ({ isLogin }) => {
     console.log(form, "form");
     $signUp(form)
       .then((data) => {
-        data.statusCode === 200 ? navigate("/sign-in") : alert(data.message);
+        data.status === 200 ? navigate("/sign-in") : alert(data.message);
       })
       .catch((err) => console.log("err", err.response.data));
   };
@@ -145,10 +145,7 @@ const SignUpForm = ({ isLogin }) => {
               onClick={onClickKakaoLogin}
             >
               <FlexRowCenter gap={"1.5rem"}>
-                <IconImg
-                  secondary={true}
-                  wd="1.8rem"
-                  hg="1.8rem"
+                <Img type='kakao-chat'
                   src={chatLogo}
                 />
                 <span>카카오 로그인</span>
@@ -164,12 +161,12 @@ const SignUpForm = ({ isLogin }) => {
             >
               <CardInput>
                 <FlexRowCenter>
-                  <IconImg className="leftLogo" src={postLogo} />
+                  <Img type='login-left' src={postLogo} />
                   <StInput
                     value={loginIdState.value}
                     name="loginId"
                     onChange={onChangeHandler}
-                    placeholder="전화 번호 또는 이메일 주소"
+                    placeholder="이메일 주소"
                   ></StInput>
                   {loginIdState.value.length === 0 ? null : (
                     <img
@@ -182,7 +179,7 @@ const SignUpForm = ({ isLogin }) => {
               </CardInput>
               <CardInput>
                 <FlexRowCenter>
-                  <IconImg className="leftLogo" src={humanLogo} />
+                  <Img type='login-left' src={humanLogo} />
                   <StInput
                     readOnly={inputReadOnlyState.usernameInput}
                     value={usernameState.value}
@@ -201,7 +198,7 @@ const SignUpForm = ({ isLogin }) => {
               </CardInput>
               <CardInput>
                 <FlexRowCenter>
-                  <IconImg className="leftLogo" src={settingLogo} />
+                  <Img type='login-left' src={settingLogo} />
                   <StInput
                     readOnly={inputReadOnlyState.nicknameInput}
                     value={nicknameState.value}
@@ -220,7 +217,7 @@ const SignUpForm = ({ isLogin }) => {
               </CardInput>
               <CardInput>
                 <FlexRowCenter>
-                  <IconImg className="leftLogo" src={lockLogo} />
+                  <Img type='login-left' src={lockLogo} />
                   <StInput
                     readOnly={inputReadOnlyState.passwordInput}
                     value={passwordState.value}
@@ -274,11 +271,7 @@ const Fragment = styled.div`
   justify-content: center;
   background-color: white;
 
-  .leftLogo {
-    margin: 0 1rem 0 1rem;
-    width: 1.4rem;
-    height: 1.4rem;
-  }
+
   .rightLogo {
     margin: 0 1rem 0 0.3rem;
     width: 1.6rem;

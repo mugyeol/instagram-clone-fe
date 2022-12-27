@@ -12,6 +12,12 @@ export const $kakaoLogin = async (code) => {
   return await myAxios.get(`/api/member/login/kakao?code=${code}`);
 };
 
+export const $addPost = async (form)=>{
+  return await myAxios.post('/api/posting',form)
+}
+
+
+
 //data request
 export const $deletePost = async (postId) => {
   return await myAxios.delete(`/post/${postId}`);

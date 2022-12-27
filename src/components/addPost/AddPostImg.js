@@ -3,22 +3,33 @@ import FlexColumnCenter from "../../components/ui/layout/FlexColumnCenter";
 import FlexRowCenter from "../../components/ui/layout/FlexRowCenter";
 import { addPostMsg } from "../../dataManager/messageVariables";
 import ModalWrapper from "../../modal/Modal";
-import Img from "../ui/elem/Img";
+import Img from "../elem/Img";
 import { BsArrowLeft } from "react-icons/bs";
-import Textarea, { TEXTAREA_MAX_LENGTH } from "../ui/elem/Textarea";
+import Textarea, { TEXTAREA_MAX_LENGTH } from "../elem/Textarea";
 import { profile } from "../../asset/navbar";
 import { VscSmiley } from "react-icons/vsc";
-import Span from "../ui/elem/Span";
-import TextButton from "../ui/elem/TextButton";
+import Span from "../elem/Span";
+import TextButton from "../elem/TextButton";
+import {$addPost} from '../../dataManager/myQueries'
 
 const AddPostImg = (props) => {
+  console.log("addpostimg props", props);
   const [textState, setText] = useState("");
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setText(value);
   };
-
+  const onSubmitHandler = ()=>{
+    const form = {
+      constents:textState,
+      imgList:[],
+      hashtagList:[],
+      membertagList:[]
+    }
+    $addPost(form).then(data=>console.log(data)).catch(err=>console.log(err))
+    
+  }
   return (
     <ModalWrapper type="addPostImg">
       <FlexColumnCenter type="full-height">
@@ -27,13 +38,11 @@ const AddPostImg = (props) => {
             <BsArrowLeft size={30} />
           </div>
           <h2>{addPostMsg.addNewPost}</h2>
-          <TextButton type='primary'>
-            {addPostMsg.toShare}
-          </TextButton>
+          <TextButton onClick={onSubmitHandler} type="primary">{addPostMsg.toShare}</TextButton>
         </FlexRowCenter>
         <FlexRowCenter type="full-height">
           <FlexRowCenter wd="var(--ig-width-addpost-img-wrapper)" hg="100%">
-            <Img src={props.url} type="addpost-image" />
+            <Img src={props.base64} type="addpost-image" />
           </FlexRowCenter>
           <FlexColumnCenter type="addpost-content">
             <FlexRowCenter gap="1rem">

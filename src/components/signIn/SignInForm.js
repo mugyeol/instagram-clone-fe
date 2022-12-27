@@ -12,7 +12,6 @@ import {
   postLogo,
   loginFont,
 } from "../../asset/login/index";
-import { IconImg } from "../ui/elem/IconImg";
 import {
   __typePassword,
   __typeUsername,
@@ -22,7 +21,8 @@ import {
 import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
 import { flexCenter } from "../ui/layout/className";
 import FlexRowCenter from "../ui/layout/FlexRowCenter";
-import PrimaryButton from "../ui/elem/PrimaryButton";
+import PrimaryButton from "../elem/PrimaryButton";
+import Img from "../elem/Img";
 
 //하단 메세지
 // const messages = {
@@ -67,19 +67,16 @@ const SignInForm = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     $login({
-      username: usernameState.value,
+      email: usernameState.value,
       password: passwordState.value,
     })
       .then((data) => {
         console.log("data login", data);
-        if (data.statusCode === 200) {
-          if (data.data !== null && data.data.startsWith("bearer")) {
-            localStorage.setItem("jwt", data.data);
+        if (data.status === 200) {
             dispatch(__cleanUp());
             navigate("/");
-          }
         } else {
-          alert(data.msg);
+          alert(data.message);
         }
       })
       .catch((err) => console.log(err));
@@ -101,9 +98,9 @@ const SignInForm = () => {
               align={flexCenter}
               gap="1rem"
             >
-              <CardInput>   
+              <CardInput>
                 <FlexRowCenter>
-                  <IconImg className="leftLogo" src={postLogo} />
+                  <Img type='login-left' src={postLogo} />
                   <StInput
                     value={usernameState.value}
                     name="id"
@@ -114,7 +111,7 @@ const SignInForm = () => {
               </CardInput>
               <CardInput style={{ cursor: "pointer" }}>
                 <FlexRowCenter>
-                  <IconImg className="leftLogo" src={lockLogo} />
+                  <Img type='login-left' src={lockLogo} />
                   <StPwdInput
                     value={passwordState.value}
                     type={passwordState.isShown ? "text" : "password"}
@@ -148,10 +145,7 @@ const SignInForm = () => {
                   onClick={onClickKakaoLogin}
                 >
                   <FlexRowCenter gap={"1.5rem"}>
-                    <IconImg
-                      secondary={true}
-                      wd="1.8rem"
-                      hg="1.8rem"
+                    <Img type='kakao-chat'
                       src={chatLogo}
                     />
                     <span>카카오 로그인</span>
@@ -175,11 +169,7 @@ const Fragment = styled.div`
   justify-content: center;
   background-color: white;
 
-  .leftLogo {
-    margin: 0 1rem 0 1rem;
-    width: 1.4rem;
-    height: 1.4rem;
-  }
+
   .rightLogo {
     margin: 0 1rem 0 0.3rem;
     width: 2rem;

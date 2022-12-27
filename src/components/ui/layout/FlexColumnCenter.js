@@ -2,17 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const FlexColumnCenter = (props) => {
+  const onClickHandler = ()=>{
+    props.onClick()
+  }
   switch (props.type) {
     case "add-body":
-      return <AddBody>{props.children}</AddBody>;
+      return <AddBody {...props}>{props.children}</AddBody>;
     case "full-height":
-      return <FullHeight>{props.children}</FullHeight>;
+      return <FullHeight {...props}>{props.children}</FullHeight>;
     case "sign-up":
-      return <LoginFlexColumn>{props.children}</LoginFlexColumn>;
+      return <LoginFlexColumn {...props}>{props.children}</LoginFlexColumn>;
     case "sign-in":
-      return <LoginFlexColumn>{props.children}</LoginFlexColumn>;
+      return <LoginFlexColumn {...props}>{props.children}</LoginFlexColumn>;
     case "addpost-content":
-      return <AddPostContent>{props.children}</AddPostContent>;
+      return <AddPostContent {...props}>{props.children}</AddPostContent>;
     default:
       return (
         <StFlexColumnCenter

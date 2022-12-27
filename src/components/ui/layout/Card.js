@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 function Card (props) {
   const CARD_COMPONENTS = {
     default: StCard,
-    sideBar: SideBar,
+    sideBarItem: SideBarItem,
   };
   const CardWrapper =
     !props.type
@@ -33,11 +33,12 @@ export const StCard = styled.div`
   margin: ${({ mg }) => mg || "0"};
   border-radius: 5px;
 `;
-const SideBar = styled(StCard)`
+const SideBarItem = styled(StCard)`
   border: none;
   width: 100%;
-  padding: 1rem 0.5rem;
+  padding: 1rem 1rem;
   border-radius: 20px;
+  cursor: pointer;
   &:hover {
     background-color: var(--ig-secondary-background);
   }

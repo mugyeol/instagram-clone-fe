@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import PrimaryButton from "../../components/ui/elem/PrimaryButton";
-import FlexColumnCenter from "../../components/ui/layout/FlexColumnCenter";
-import FlexRowCenter from "../../components/ui/layout/FlexRowCenter";
+import PrimaryButton from "../elem/PrimaryButton";
+import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
+import FlexRowCenter from "../ui/layout/FlexRowCenter";
 import { addPostMsg } from "../../dataManager/messageVariables";
 import { addPostIcon } from "../../asset/addpost";
 import ModalWrapper from "../../modal/Modal";
@@ -14,16 +14,17 @@ const AddPost = () => {
   const { openModal, closeModal } = useModal();
   const onChangeFileHandler = (e) => {
     let reader = new FileReader();
-    openModal({type:'addPostImg'})
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = (e)=>{
+      openModal({type:'addPostImg', props:{base64:e.target.result}} )
+    }
     // uploadFileToS3(e.target.files[0])
     //   .then((data) => {
     //     data.Location &&
     //       openModal({ type: "addPostImg", props: {url:data.Location} });
     //   })
     //   .catch((err) => console.log("err", err));
-    // if (e.target.files[0]) {
-    //   reader.readAsDataURL(e.target.files[0]);
-    // }
+
   };
 
   return (

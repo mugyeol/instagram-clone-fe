@@ -1,9 +1,7 @@
 import React from "react";
-import FlexRow from "../ui/layout/FlexRow";
 import styled, { css } from "styled-components";
-import FlexColumn from "../ui/layout/FlexColumn";
-import { flexCenter } from "../ui/layout/className";
-
+import FlexRowCenter from "../ui/layout/FlexRowCenter";
+import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
 const Footer = ({ isLogin }) => {
   const arr1 = [
     "Meta",
@@ -20,18 +18,18 @@ const Footer = ({ isLogin }) => {
   ];
   const arr2 = ["한국어", "© 2022 Instagram from Meta"];
   return (
-    <FlexColumn gap={'2rem'} justify={flexCenter} align={flexCenter}>
-      <FlexRow gap={'2rem'} justify={flexCenter} align={flexCenter}>
+    <FlexColumnCenter gap={"2rem"}>
+      <FlexRowCenter gap={"2rem"}>
         {arr1.map((el) => (
           <StSpan>{el}</StSpan>
         ))}
-      </FlexRow>
-      <FlexRow gap={'2rem'} justify={flexCenter} align={flexCenter}>
+      </FlexRowCenter>
+      <FlexRowCenter gap={"2rem"}>
         {arr2.map((el) => (
           <StSpan>{el}</StSpan>
         ))}
-      </FlexRow>
-    </FlexColumn>
+      </FlexRowCenter>
+    </FlexColumnCenter>
   );
 };
 
@@ -41,5 +39,5 @@ const StSpan = styled.div`
   font-size: 1.2rem;
   color: ${({ isLogin }) =>
     isLogin ? css`var(--ig-light-theme-text)` : css`var(--ig-third-text)`};
-    font-weight:400;
+  font-weight: 400;
 `;

@@ -2,19 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const FlexRowCenter = (props) => {
-  // const onClickHandler = ()=>{
-  //   props.onClick()
-  // }
+  const onClickHandler = ()=>{
+    props.onClick()
+  }
 
   switch (props.type) {
     case "add-header":
-      return <AddHeader>{props.children}</AddHeader>;
+      return <AddHeader {...props}>{props.children}</AddHeader>;
     case "sign-in":
-      return <LoginFlexRow>{props.children}</LoginFlexRow>;
+      return <LoginFlexRow {...props}>{props.children}</LoginFlexRow>;
     case "sign-up":
-      return <LoginFlexRow>{props.children}</LoginFlexRow>;
+      return <LoginFlexRow {...props}>{props.children}</LoginFlexRow>;
     case "full-height":
-      return <FullHeight>{props.children}</FullHeight>;
+      return <FullHeight {...props}>{props.children}</FullHeight>;
+    case 'side-nav-wrap':
+      return <SideNavWrapper {...props}>{props.children}</SideNavWrapper>
     default:
       return (
         <StFlexRowCenter
@@ -62,4 +64,11 @@ const LoginFlexRow = styled(StFlexRowCenter)`
 `;
 const FullHeight = styled(StFlexRowCenter)`
   height: 100%;
+`;
+const SideNavWrapper = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+gap: 2rem;
 `;
