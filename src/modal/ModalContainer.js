@@ -7,15 +7,14 @@ import AddPost from "../components/addPost/AddPost";
 import AddPostImg from "../components/addPost/AddPostImg";
 
 const MODAL_COMPONENTS = {
-  addpost: AddPost,
+  addPost: AddPost,
   detail: Detail,
   addPostImg: AddPostImg,
 };
 
 function ModalContainer() {
   const { type, props } = useSelector(modalSelector);
-  console.log('type', type)
-  console.log('props', props)
+ console.log('props', props)
 
   if (!type) {
     return null;
@@ -24,7 +23,7 @@ function ModalContainer() {
   const ModalComponent = MODAL_COMPONENTS[type];
   return createPortal(
     <>
-      <ModalComponent props={props} />
+      <ModalComponent {...props} />
     </>,
     document.getElementById("modal")
   );

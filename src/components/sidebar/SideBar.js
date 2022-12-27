@@ -27,18 +27,19 @@ const SideBar = () => {
         border="1px solid var(--ig-elevated-separator)"
       >
         <FlexColumn align={flexStart} gap="3rem">
-
-          <img className="insta-logo" alt="" src={instagram}/>
-          <FlexRow
-            className="row"
-            gap={"2rem"}
-            justify={flexStart}
-            align={flexCenter}
-            onClick={() => navigate(PATH.main)}
-          >
-            <AiOutlineHome size={30} />
-            <h2>홈</h2>
-          </FlexRow>
+          <img className="insta-logo" alt="" src={instagram} />
+          <Card type='sideBar'>
+            <FlexRow
+              className="row"
+              gap={"2rem"}
+              justify={flexStart}
+              align={flexCenter}
+              onClick={() => navigate(PATH.main)}
+            >
+              <AiOutlineHome size={30} />
+              <h2>홈</h2>
+            </FlexRow>
+          </Card>
           {/* <FlexRow gap={'2rem'} justify={flexStart} onClick={()=>navigate(PATH.main)}>
             <IconImg src={homeIcon}/>
             <h2>검색</h2>
@@ -64,7 +65,7 @@ const SideBar = () => {
             gap={"2rem"}
             justify={flexStart}
             align={flexCenter}
-            onClick={() => openModal({ type: "addpost" })}
+            onClick={() => openModal({ type: "addPost" })}
           >
             <AiOutlinePlusSquare size={30} />
             {/* <IconImg src={homeIcon}/> */}
@@ -85,7 +86,7 @@ const Wrapper = styled.div`
   .row {
     cursor: pointer;
   }
-  .insta-logo { 
+  .insta-logo {
     height: 4rem;
     width: 10rem;
   }

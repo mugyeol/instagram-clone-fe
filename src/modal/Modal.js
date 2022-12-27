@@ -4,26 +4,34 @@ import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import useOutSideClick from "./hooks/useOutSideClick";
 import useModal from "./hooks/useModal";
+import {RiCloseFill} from 'react-icons/ri'
 
-function Modal({ children }) {
-  const modalRef = useRef(null)
+function ModalWrapper({ children, type='addPost' }) {
+  const modalRef = useRef(null);
 
-  const {closeModal} = useModal()
-  useOutSideClick(modalRef, closeModal)
+  const { closeModal } = useModal();
+  useOutSideClick(modalRef, closeModal);
   useEffect(() => {
     const $body = document.querySelector("body");
     const overflow = $body.style.overflow;
     $body.style.overflow = "hidden";
     return () => {
-    	$body.style.overflow = overflow
+      $body.style.overflow = overflow;
     };
   }, []);
+
+  const MODAL_WRAPPERS = { addPost: AddPostWrap,
+  addPostImg : AddPostImgWrap
+  
+  };
+
+  const Wrapper = MODAL_WRAPPERS[type]
+
   return (
-      <Overlay>
-        <ModalWrap ref={modalRef}>
-            {children}
-        </ModalWrap>
-      </Overlay>
+    <Overlay>
+      <RiCloseFill onClick={()=>closeModal()} className='close-icon' size={30} color={'var(--ig-primary-text)'} />
+      <Wrapper ref={modalRef}>{children}</Wrapper>
+    </Overlay>
   );
 }
 
@@ -37,11 +45,20 @@ const Overlay = styled.div`
   right: 0;
   background: rgba(0, 0, 0, 0.37);
   z-index: 9999;
+
+  .close-icon{
+    position: fixed;
+    top: 1.2rem;
+    right: 1.2rem;
+    cursor: pointer;
+  }
+
 `;
 
-const ModalWrap = styled.div`
-  width: 600px;
-  height: 600px;
+
+const AddPostWrap = styled.div`
+  width: var(--ig-width-addpost-img-wrapper);
+  height: 60rem;
   border-radius: 5px;
   background-color: var(--ig-elevated-background);
   position: absolute;
@@ -49,6 +66,10 @@ const ModalWrap = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+const AddPostImgWrap = styled(AddPostWrap)`
+width: 95rem;
+height: 60rem;
 
 
-export default Modal;
+`
+export default ModalWrapper;
