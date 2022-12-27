@@ -118,7 +118,7 @@ const SignUpForm = ({ isLogin }) => {
     console.log(form, "form");
     $signUp(form)
       .then((data) => {
-        data.statusCode === 200 ? navigate("/sign-in") : alert(data.msg);
+        data.statusCode === 200 ? navigate("/sign-in") : alert(data.message);
       })
       .catch((err) => console.log("err", err.response.data));
   };

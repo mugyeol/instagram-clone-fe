@@ -6,19 +6,20 @@ import SignUpForm from "../components/signUp/SignUpForm";
 import { flexCenter, flexStart } from "../components/ui/layout/className";
 import SignUpFooter from "../components/signUp/SignUpFooter";
 import FlexColumnCenter from "../components/ui/layout/FlexColumnCenter";
+import FlexRowCenter from "../components/ui/layout/FlexRowCenter";
 
 const SignUpPage = () => {
   return (
-    <LoginFlexColumn>
-      <LoginFlexRow >
+    <FlexColumnCenter type='sign-up'>
+      <FlexRowCenter type='sign-up' >
         <LoginImage src={signInImage} />
         <FlexColumnCenter mg={'4rem 0'} wd={'none'} gap={'1rem'}>
           <SignUpForm />
           <SignUpFooter isSignIn={false} />
         </FlexColumnCenter>
-      </LoginFlexRow>
+      </FlexRowCenter>
       <Footer isLogin={true} />
-    </LoginFlexColumn>
+    </FlexColumnCenter>
   );
 };
 
@@ -27,24 +28,5 @@ export default SignUpPage;
 const LoginImage = styled.img`
   width: 41rem;
   height: 60rem;
-  margin-top: 7rem;
 `;
-const LoginFlexColumn = styled.div`
-  padding: 2rem 0 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--ig-light-theme-background); ;
-`;
-const LoginFlexRow = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 3rem;
-  flex: 1;
-`;
+

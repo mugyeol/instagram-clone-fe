@@ -1,9 +1,17 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Card = (props) => {
+function Card (props) {
+  const CARD_COMPONENTS = {
+    default: StCard,
+    sideBar: SideBar,
+  };
+  const CardWrapper =
+    !props.type
+      ? StCard
+      : CARD_COMPONENTS[props.type];
   return (
-    <StCard
+    <CardWrapper
       className={props.className}
       wd={props.wd}
       pd={props.pd}
@@ -12,7 +20,7 @@ const Card = (props) => {
       border={props.border}
     >
       {props.children}
-    </StCard>
+    </CardWrapper>
   );
 };
 
@@ -24,4 +32,13 @@ export const StCard = styled.div`
   padding: ${({ pd }) => pd || "0"};
   margin: ${({ mg }) => mg || "0"};
   border-radius: 5px;
+`;
+const SideBar = styled(StCard)`
+  border: none;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  border-radius: 20px;
+  &:hover {
+    background-color: var(--ig-secondary-background);
+  }
 `;
