@@ -24,7 +24,7 @@ const PrimaryButton = (props) => {
 
 export default PrimaryButton;
 export const StPrimaryBtn = styled.button`
-  font-size: ${({ fontSize }) => fontSize || "1.6rem"};
+  font-size: ${({ fontSize }) => fontSize || "1.4rem"};
   border-radius: 5px;
   padding: 0.5rem 1.25rem;
   margin: ${({ mg }) => mg || "0"};

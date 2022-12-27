@@ -5,8 +5,14 @@ const FlexColumnCenter = (props) => {
   switch (props.type) {
     case "add-body":
       return <AddBody>{props.children}</AddBody>;
-    case 'full-height':
+    case "full-height":
       return <FullHeight>{props.children}</FullHeight>;
+    case "sign-up":
+      return <LoginFlexColumn>{props.children}</LoginFlexColumn>;
+    case "sign-in":
+      return <LoginFlexColumn>{props.children}</LoginFlexColumn>;
+    case "addpost-content":
+      return <AddPostContent>{props.children}</AddPostContent>;
     default:
       return (
         <StFlexColumnCenter
@@ -47,4 +53,17 @@ const AddBody = styled(StFlexColumnCenter)`
 `;
 const FullHeight = styled(StFlexColumnCenter)`
   height: 100%;
-`
+`;
+const LoginFlexColumn = styled(StFlexColumnCenter)`
+  padding: 2rem 0 4rem;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--ig-light-theme-background);
+`;
+const AddPostContent = styled(StFlexColumnCenter)`
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem;
+  gap: 2rem;
+`;

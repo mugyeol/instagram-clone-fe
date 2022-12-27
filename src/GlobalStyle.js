@@ -35,13 +35,15 @@ const GlobalStyle = createGlobalStyle`
 
     --color-yellow: #F8D706;
     --color-gray: #B2B2B2;
-    --color-primary: #2E90FA;
+    --color-primary: #0095F6;
     --color-primary-invalid:#B2DDFF;
     --color-light-gray:#7F7F7F;
     --color-black:#2F1B1A;
     --color-white:#FFFFFF;
     --color-red:#F04438;
     --color-subtle-gray:#CCCCCC;
+
+    --ig-width-addpost-img-wrapper:60rem; 
 
 
   }
