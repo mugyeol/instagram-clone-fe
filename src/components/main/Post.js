@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../../components/ui/layout/Card";
 import FlexColumn from "../../components/ui/layout/FlexColumn";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiFillSmile } from "react-icons/ai";
 import { IoPaperPlaneOutline, IoChatbubbleOutline } from "react-icons/io5";
+import { FiBookmark } from "react-icons/fi";
+import axios from "axios";
 
 const Post = () => {
+  const [like, setLike] = useState(false);
+
   return (
     <Fragment>
       <Card border="1px solid var(--ig-elevated-separator)">
@@ -33,7 +37,7 @@ const Post = () => {
               className="post-image"
               alt=""
             />
-            <div className="post-content">
+           <div className="post-content">
               <div className="reaction-wrapper">
                 <button className="btn1">
                   <AiOutlineHeart style={{ width: "24", height: "24" }} />
@@ -44,16 +48,20 @@ const Post = () => {
                 <button>
                   <IoPaperPlaneOutline style={{ width: "24", height: "24" }} />
                 </button>
+                <button className="btn4">
+                  <FiBookmark style={{ width: "24", height: "24" }} />
+                </button>
               </div>
               <p className="likes">좋아요 1,012 개</p>
               <p clclassNamess="description">
                 <span>hm_son7 </span> 국민 여러분들 덕분에 이렇게 재밋는 축구를
                 할수 있어서 감사합니다 사랑합니다!!! 대한민국!!!
               </p>
-              {/* <p class="post-time">2 minutes ago</p> */}
             </div>
-            <div className="comment-wrapper">
-              <button src="img/smile.PNG" class="icon" alt="" />
+            <div class="comment-wrapper">
+              <button>
+                <AiFillSmile className="smil" />
+              </button>
               <input
                 type="text"
                 className="comment-box"
@@ -150,7 +158,7 @@ const Fragment = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgb(38, 38, 38);
+    border-top: 1px solid var(--ig-elevated-background);
   }
 
   .comment-wrapper .icon {
@@ -191,16 +199,7 @@ const Fragment = styled.div`
     margin-top: -20px;
     align-items: center;
   }
-
-  .reaction-wrapper .button {
-    height: 25px;
-    margin: 0;
-    margin-right: 20px;
-    width: 25px;
-    height: 25px;
-    background-color: var(--ig-primary-logo);
-  }
-
+  
   .reaction-wrapper > button {
     align-items: center;
     background: transparent;
@@ -209,10 +208,46 @@ const Fragment = styled.div`
     display: flex;
     justify-content: center;
     padding: 8px;
+    filter: invert(100%);
+  }
+
+  .reaction-wrapper > button :hover {
+    fill: var(--ig-elevated-separator);
   }
 
   .reaction-wrapper .button.save {
     margin-left: auto;
+  }
+
+  .btn4 {
+    border: 0;
+    display: inline-block;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    margin-left: auto;
+    margin-right: -10px;
+    padding: 0;
+    vertical-align: baseline;
+  }
+
+  .comment-wrapper > button {
+    align-items: center;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    filter: invert(0%);
+  }
+
+  .comment-wrapper > button:hover {
+    fill: var(--ig-elevated-separator);
+  }
+
+  .smil {
+    width: 24px;
+    height: 24px;
   }
 `;
 // 현재의 FlexColum, FlexRow, Card에 props추가 해야하는 경우

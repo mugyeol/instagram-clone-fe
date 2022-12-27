@@ -2,45 +2,238 @@
   "insta": [
     {
       "id": 1,
-      "contents": "대한민국 사랑합니다.",
-      "likeCount": 30000,
-      "nickname": "hm_son7",
-      "commentCount": 2,
-      "postingLike": false,
-      "hashtagList": ["", ""],
-      "createdAt": "String",
-      "modifiedAt": "String",
+      "contents": "테스트 내용2",
+      "likeCount": 1,
+      "nickname": "hm_son07",
+      "commentCount": 11,
+      "postingLike": true,
+      "hashtagList": [
+        "HashTag1",
+        "HashTag2"
+      ],
+      "membertagList": [
+        "user1",
+        "user2"
+      ],
+      "createdAt": "36분 전",
+      "modifiedAt": "36분 전",
       "imgList": [
         {
           "postingImgNum": 1,
-          "postingImg": "Img url"
+          "postingImg": "https://w.namu.la/s/2b1a2f3bbc967046f46bf38d5a87efed1103cb11567c7749339ac3e139407312c0e3e8ff6c19a7bafe8a37b83961094e75a4313da9d4dff64b1c82fdd988ebdac78dd5f3622ef9b324d2f043335ba7ae0fb7e8065c0ab358052f2b0a33ed3988",
+          "memberTagList": [
+            {
+              "nickname": "user4",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user2",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
         },
         {
           "postingImgNum": 2,
-          "postingImg": "Img url"
+          "postingImg": "img URL from S3",
+          "memberTagList": [
+            {
+              "nickname": "user3",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user4",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
         }
       ]
     },
     {
       "id": 2,
-      "contents": "나는 최강 수비수",
-      "likeCount": 20000,
-      "nickname": "김민재",
-      "commentCount": 2,
+      "contents": "테스트 내용2",
+      "likeCount": 0,
+      "nickname": "user1",
+      "commentCount": 11,
       "postingLike": false,
-      "hashtagList": ["", ""],
-      "createdAt": "String",
-      "modifiedAt": "String",
+      "hashtagList": [
+        "HashTag1",
+        "HashTag2"
+      ],
+      "membertagList": [
+        "user1",
+        "user2"
+      ],
+      "createdAt": "36분 전",
+      "modifiedAt": "36분 전",
       "imgList": [
         {
           "postingImgNum": 1,
-          "postingImg": "Img url"
+          "postingImg": "img URL from S3",
+          "memberTagList": [
+            {
+              "nickname": "user4",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user2",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
         },
         {
           "postingImgNum": 2,
-          "postingImg": "Img url"
+          "postingImg": "img URL from S3",
+          "memberTagList": [
+            {
+              "nickname": "user3",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user4",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
         }
       ]
+    },
+    {
+      "id": 3,
+      "contents": "테스트 내용2",
+      "likeCount": 0,
+      "nickname": "user1",
+      "commentCount": 11,
+      "postingLike": false,
+      "hashtagList": [
+        "HashTag1",
+        "HashTag2"
+      ],
+      "membertagList": [
+        "user1",
+        "user2"
+      ],
+      "createdAt": "36분 전",
+      "modifiedAt": "36분 전",
+      "imgList": [
+        {
+          "postingImgNum": 1,
+          "postingImg": "img URL from S3",
+          "memberTagList": [
+            {
+              "nickname": "user4",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user2",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
+        },
+        {
+          "postingImgNum": 2,
+          "postingImg": "img URL from S3",
+          "memberTagList": [
+            {
+              "nickname": "user3",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user4",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "contents": "테스트 내용2",
+      "likeCount": 0,
+      "nickname": "user1",
+      "commentCount": 11,
+      "postingLike": false,
+      "hashtagList": [
+        "HashTag1",
+        "HashTag2"
+      ],
+      "membertagList": [
+        "user1",
+        "user2"
+      ],
+      "createdAt": "36분 전",
+      "modifiedAt": "36분 전",
+      "imgList": [
+        {
+          "postingImgNum": 1,
+          "postingImg": "img URL from S3",
+          "memberTagList": [
+            {
+              "nickname": "user4",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user2",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
+        },
+        {
+          "postingImgNum": 2,
+          "postingImg": "img URL from S3",
+          "memberTagList": [
+            {
+              "nickname": "user3",
+              "coordinateX": 40,
+              "coordinateY": 30
+            },
+            {
+              "nickname": "user4",
+              "coordinateX": 10,
+              "coordinateY": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
     }
   ]
 }
