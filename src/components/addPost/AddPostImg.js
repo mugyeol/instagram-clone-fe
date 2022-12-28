@@ -14,22 +14,23 @@ import { $addPost } from "../../dataManager/myQueries";
 import { uploadBase64ToS3 } from "../../dataManager/imageQueries";
 import useModal from "../../modal/hooks/useModal";
 import { useNavigate } from "react-router-dom";
-
+import styled from "styled-components";
+import SelectedImages from "./SelectedImages";
 const AddPostImg = (props) => {
   const navigate = useNavigate();
-  const { closeModal } = useModal();
+  const { openModal,closeModal } = useModal();
 
   const [form, setForm] = useState({ contents: "", imgList: [] });
   console.log("form", form);
   useEffect(() => {
-    uploadBase64ToS3(props.base64).then((data) =>
-      setForm((prev) => {
-        return {
-          ...prev,
-          imgList: [{ postingImgNum: 1, postingImg: data.Location }],
-        };
-      })
-    );
+    // uploadBase64ToS3(props.base64).then((data) =>
+    //   setForm((prev) => {
+    //     return {
+    //       ...prev,
+    //       imgList: [{ postingImgNum: 1, postingImg: data.Location }],
+    //     };
+    //   })
+    // );
   }, []);
 
 
@@ -63,11 +64,11 @@ const AddPostImg = (props) => {
           <div>
             <BsArrowLeft
               style={{ cursor: "pointer" }}
-              onClick={() => closeModal()}
+              onClick={() => openModal({type:'addPost'})}
               size={30}
             />
           </div>
-          <h2>{addPostMsg.addNewPost}</h2>
+          <h2>새 게시물 만들기</h2>
           <TextButton
             disabled={form.imgList.length > 0}
             onClick={onSubmitHandler}
@@ -76,10 +77,10 @@ const AddPostImg = (props) => {
             공유하기
           </TextButton>
         </FlexRowCenter>
-        <FlexRowCenter type="full-height">
-          <FlexRowCenter wd="var(--ig-width-addpost-img-wrapper)" hg="100%">
-            <Img src={props.base64} type="addpost-image" />
-          </FlexRowCenter>
+        {/* //content */}
+        <StGrid>
+          {/* images */}
+          <SelectedImages base64={props.base64}/>
           <FlexColumnCenter type="addpost-content">
             <FlexRowCenter gap="1rem">
               <Img type="circle-profile" src={profile} />
@@ -99,10 +100,16 @@ const AddPostImg = (props) => {
               </div>
             </FlexRowCenter>
           </FlexColumnCenter>
-        </FlexRowCenter>
+        </StGrid>
       </FlexColumnCenter>
     </ModalWrapper>
   );
 };
 
 export default AddPostImg;
+const StGrid = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;

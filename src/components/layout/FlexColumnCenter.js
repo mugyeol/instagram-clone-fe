@@ -17,7 +17,11 @@ const FlexColumnCenter = (props) => {
     case "addpost-content":
       return <AddPostContent {...props}>{props.children}</AddPostContent>;
     case "content-replies":
-      return <ContentReplyContainer {...props}>{props.children}</ContentReplyContainer>;
+      return (
+        <ContentReplyContainer {...props}>
+          {props.children}
+        </ContentReplyContainer>
+      );
     default:
       return (
         <StFlexColumnCenter {...props}>{props.children}</StFlexColumnCenter>
@@ -66,5 +70,5 @@ const ContentReplyContainer = styled(AddPostContent)`
   border-bottom: 1px solid var(--ig-elevated-separator);
   border-top: 1px solid var(--ig-elevated-separator);
   flex: 1;
-  padding: var(--ig-post-padding) var(--ig-post-padding) 0.1rem
+  padding: var(--ig-post-padding) var(--ig-post-padding) 0.1rem;
 `;

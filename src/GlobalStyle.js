@@ -36,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
     --ig-light-theme-secondary-text: #262626;
     --ig-light-theme-separator:#DBDBDB;
     
+    --ig-color-red:#ED4956;
 
     --color-yellow: #F8D706;
     --color-gray: #B2B2B2;

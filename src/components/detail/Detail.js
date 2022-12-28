@@ -5,7 +5,7 @@ import Img from "../elem/Img";
 import ModalWrapper from "../../modal/Modal";
 import HeaderProfile from "./HeaderProfile";
 import { flexStart } from "../layout/className";
-import ContentAndReplies from "./ReplyList";
+import Content from "./Content";
 import IconButtonGroup from "./IconButtonGroup";
 import LikeCount from "./LikeCount";
 import TimeAgo from "./TimeAgo";
@@ -25,13 +25,7 @@ const Detail = (props) => {
       <StGrid>
         {/* detail image */}
         <DetailImage/>
-        {/* <FlexColumnCenter type="full-height" pd="2.5rem 0">
-          <Img
-            type="detail-image"
-            src="https://hanghaecatsanddogs.s3.ap-northeast-2.amazonaws.com/0b373c5d-fa78-6cbd-fbf5-a20f9b5a4847.jpeg"
-          />
-        </FlexColumnCenter> */}
-        {/* content body*/}
+
         <FlexColumnCenter
           style={{ border: "1px solid var(--ig-elevated-separator)" }}
           justify={flexStart}
@@ -40,10 +34,10 @@ const Detail = (props) => {
           <HeaderProfile />
           {/* content and replies */}
           <FlexColumnCenter type="content-replies">
-            <ContentAndReplies />
+            <Content/>
           </FlexColumnCenter>
           {/* button group */}
-          <IconButtonGroup />
+          <IconButtonGroup postId={props.id}/>
           {/* like count / time ago */}
           <FlexColumnCenter gap="1rem" pd="0 var(--ig-post-padding) var(--ig-post-padding) ">
             <LikeCount />

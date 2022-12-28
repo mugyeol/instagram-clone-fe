@@ -2,18 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 export const TEXTAREA_MAX_LENGTH = 2200;
-const Textarea = ({ type, placeholder = "문구 입력 ...", onChange }) => {
+const Textarea = (props) => {
   const onChangeHandler = (e) => {
-    onChange(e);
+    props.onChange(e);
   };
-  switch (type) {
+  switch (props.type) {
     case "comment":
       return (
-        <CommentArea onChange={onChangeHandler} placeholder={placeholder} />
+        <CommentArea {...props} />
       );
     default:
       return (
-        <StTextarea onChange={onChangeHandler} placeholder={placeholder} />
+        <StTextarea {...props} />
       );
   }
 };

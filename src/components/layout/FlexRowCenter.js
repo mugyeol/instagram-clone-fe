@@ -23,6 +23,7 @@ const FlexRowCenter = (props) => {
       return <PostButtonGroup {...props}>{props.children}</PostButtonGroup>;
     case "post-add-comment":
       return <PostAddComment {...props}>{props.children}</PostAddComment>;
+
     default:
       return <StFlexRowCenter {...props}>{props.children}</StFlexRowCenter>;
   }

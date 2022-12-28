@@ -14,9 +14,11 @@ import Img from "../elem/Img";
 import { CiSettings } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 import { $removeToken } from "../../dataManager/myQueries";
+import { useSelector } from "react-redux";
 const SideBar = () => {
   const navigate = useNavigate();
   const { openModal } = useModal();
+  const profileImg = useSelector(state=>state.user.profileImg)
   return (
     <Wrapper>
       <Card
@@ -46,7 +48,7 @@ const SideBar = () => {
           <Card type="sideBarItem">
             <FlexRowCenter
               type="side-nav-wrap"
-              onClick={() => openModal({ type: "detail", props: { id: 1 } })}
+              onClick={() => openModal({ type: "detail", props: { id: 3 } })}
             >
               <CiSettings size={30} />
               <h2>상세 작업중</h2>
@@ -62,12 +64,14 @@ const SideBar = () => {
             </FlexRowCenter>
           </Card>
           <Card type="sideBarItem">
-            <FlexRowCenter type="side-nav-wrap">
+            <FlexRowCenter type="side-nav-wrap"
+              onClick={() => openModal({ type: "alert"})}
+            >
               <Img
                 type="circle-profile"
                 wd={"3rem"}
                 hg={"3rem"}
-                src={profile}
+                src={profileImg}
               />
               <h2>프로필</h2>
             </FlexRowCenter>
@@ -76,7 +80,7 @@ const SideBar = () => {
             <FlexRowCenter
               type="side-nav-wrap"
               onClick={() => {
-                $removeToken() 
+                $removeToken();
                 navigate(PATH.signIn);
               }}
             >

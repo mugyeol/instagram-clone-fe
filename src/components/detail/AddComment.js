@@ -8,26 +8,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { __typeComment } from "../../redux/modules/detailSlice";
 import { __submitComment } from "../../redux/modules/detailSlice";
 
-function AddComment({postId}) {
-  const dispatch = useDispatch()
-  const commentState = useSelector(state=>state.detail.comment)
+function AddComment({ postId }) {
+  const dispatch = useDispatch();
+  const comment = useSelector((state) => state.detail.comment);
+  console.log('comment',comment)
 
-
-  const onChangeHandler = (e)=>{
-    dispatch(__typeComment(e.target.value))
-  }
-  const onsubmitHandler = (e)=>{
+  const onChangeHandler = (e) => {
+    console.log('changehandler')
+    dispatch(__typeComment(e.target.value));
+  };
+  const onsubmitHandler = (e) => {
     dispatch(
-      __submitComment({ postId: postId, comment: { comment: commentState } })
-    );  }
+      __submitComment({ postId: postId, comment: { comment: comment } })
+    );
+  };
   return (
     <FlexRowCenter type="post-add-comment">
       <VscSmiley style={{ margin: "var(--ig-post-padding)" }} size={iconSize} />
-      <Textarea value={commentState} onChange={onChangeHandler} type="comment" placeholder="댓글 달기..." />
+      <Textarea
+        value={comment}
+        onChange={onChangeHandler}
+        type="comment"
+        placeholder="댓글 달기..."
+      />
       <TextButton
-        onClick = {onsubmitHandler}
+        onClick={onsubmitHandler}
         style={{ margin: "var(--ig-post-padding)" }}
-        disabled={commentState === ''}
+        disabled={comment === ""}
         type="addComment"
       >
         게시

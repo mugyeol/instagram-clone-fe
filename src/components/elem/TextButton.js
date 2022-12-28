@@ -23,6 +23,7 @@ const CursorPointer = styled.button`
   border: none;
   background-color: transparent;
   font-size: 1.4rem;
+  color:var(--ig-primary-text);
   cursor: pointer;
 `;
 const Primary = styled(CursorPointer)`

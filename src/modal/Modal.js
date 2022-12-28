@@ -24,6 +24,7 @@ function ModalWrapper({ children, type = "addPost" }) {
     addPost: AddPostWrap,
     addPostImg: AddPostImgWrap,
     detail: DetailWrap,
+    alert: AlertModal,
   };
 
   const Wrapper = MODAL_WRAPPERS[type];
@@ -40,6 +41,7 @@ function ModalWrapper({ children, type = "addPost" }) {
     </Overlay>
   );
 }
+export default ModalWrapper;
 
 const Overlay = styled.div`
   position: fixed;
@@ -71,13 +73,18 @@ const AddPostWrap = styled.div`
   transform: translate(-50%, -50%);
 `;
 const AddPostImgWrap = styled(AddPostWrap)`
-  width: 95rem;
+  width: 90rem;
   height: 60rem;
+  overflow: hidden;
 `;
 const DetailWrap = styled(AddPostWrap)`
-  width: 83%;
-  height: 85%;
+  width: 100rem;
+  height: 75rem;
   background-color: var(--ig-primary-background);
   overflow: hidden;
 `;
-export default ModalWrapper;
+const AlertModal = styled(AddPostWrap)`
+  width: 40rem;
+  height: 20rem;
+  border-radius: 15px;
+`;
