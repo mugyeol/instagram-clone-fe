@@ -75,10 +75,9 @@ const AddPostImgWrap = styled(AddPostWrap)`
   height: 60rem;
 `;
 const DetailWrap = styled(AddPostWrap)`
-  width: 65%;
+  width: 83%;
   height: 85%;
   background-color: var(--ig-primary-background);
-  border: 1px solid white;
   overflow: hidden;
 `;
 export default ModalWrapper;

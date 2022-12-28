@@ -10,12 +10,16 @@ myAxios.interceptors.request.use((config) => {
   config.headers["Access-Control-Allow-Origin"] = "*";
   return config;
 });
-myAxios.interceptors.response.use((response) => {
-  console.log("AXIOS RESPONSE TERCEPTOR RESPONSE : ", response.headers['authorization']);
-  response.headers['authorization'] && localStorage.setItem('jwt',response.headers['authorization'])
-  return response.data;
-},(error)=>{
-  console.log("AXIOS error interceptors : ",error)
-  return Promise.reject(error)
-});
+myAxios.interceptors.response.use(
+  (response) => {
+    console.log("AXIOS RESPONSE TERCEPTOR RESPONSE : ", response);
+    response.headers["authorization"] &&
+      localStorage.setItem("jwt", response.headers["authorization"]);
+    return response.data;
+  },
+  (error) => {
+    console.log("AXIOS error interceptors [err object] : ", error);
+    return Promise.reject(error);
+  }
+);
 export default myAxios;

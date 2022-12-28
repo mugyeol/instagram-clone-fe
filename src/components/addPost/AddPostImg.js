@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlexColumnCenter from "../../components/layout/FlexColumnCenter";
 import FlexRowCenter from "../../components/layout/FlexRowCenter";
 import { addPostMsg } from "../../dataManager/messageVariables";
@@ -10,35 +10,71 @@ import { profile } from "../../asset/navbar";
 import { VscSmiley } from "react-icons/vsc";
 import Span from "../elem/Span";
 import TextButton from "../elem/TextButton";
-import {$addPost} from '../../dataManager/myQueries'
+import { $addPost } from "../../dataManager/myQueries";
+import { uploadBase64ToS3 } from "../../dataManager/imageQueries";
+import useModal from "../../modal/hooks/useModal";
+import { useNavigate } from "react-router-dom";
 
 const AddPostImg = (props) => {
-  console.log("addpostimg props", props);
-  const [textState, setText] = useState("");
+  const navigate = useNavigate();
+  const { closeModal } = useModal();
+
+  const [form, setForm] = useState({ contents: "", imgList: [] });
+  console.log("form", form);
+  useEffect(() => {
+    uploadBase64ToS3(props.base64).then((data) =>
+      setForm((prev) => {
+        return {
+          ...prev,
+          imgList: [{ postingImgNum: 1, postingImg: data.Location }],
+        };
+      })
+    );
+  }, []);
+
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
-    setText(value);
+    setForm((prev) => {
+      return {
+        ...prev,
+        contents: value,
+      };
+    });
   };
-  const onSubmitHandler = ()=>{
-    const form = {
-      constents:textState,
-      imgList:[],
-      hashtagList:[],
-      membertagList:[]
-    }
-    $addPost(form).then(data=>console.log(data)).catch(err=>console.log(err))
-    
-  }
+  const onSubmitHandler = () => {
+    $addPost(form)
+      .then((res) =>
+        res.status === 200 ? closeModal() : alert("alert" + res.message)
+      )
+      .catch((err) => {
+        const status = err.response.status;
+        if (status === 403) {
+          alert('로그인 세션이 만료되었습니다.')
+          closeModal()
+          navigate("/sign-in");
+        }
+      });
+  };
   return (
     <ModalWrapper type="addPostImg">
       <FlexColumnCenter type="full-height">
         <FlexRowCenter type="add-header">
           <div>
-            <BsArrowLeft size={30} />
+            <BsArrowLeft
+              style={{ cursor: "pointer" }}
+              onClick={() => closeModal()}
+              size={30}
+            />
           </div>
           <h2>{addPostMsg.addNewPost}</h2>
-          <TextButton onClick={onSubmitHandler} type="primary">{addPostMsg.toShare}</TextButton>
+          <TextButton
+            disabled={form.imgList.length > 0}
+            onClick={onSubmitHandler}
+            type="primary"
+          >
+            공유하기
+          </TextButton>
         </FlexRowCenter>
         <FlexRowCenter type="full-height">
           <FlexRowCenter wd="var(--ig-width-addpost-img-wrapper)" hg="100%">
@@ -49,12 +85,12 @@ const AddPostImg = (props) => {
               <Img type="circle-profile" src={profile} />
               <span style={{ flex: 1, fontWeight: 700 }}>htpadkorik</span>
             </FlexRowCenter>
-            <Textarea value={textState} onChange={onChangeHandler} />
+            <Textarea value={form.contents} onChange={onChangeHandler} />
             <FlexRowCenter justify="space-between">
               <VscSmiley size={20} color="var(--ig-third-text)" />
               <div>
                 <Span fs="1.2rem" color="var(--ig-third-text)">
-                  {textState.length}
+                  {form.contents.length}
                 </Span>
                 <Span
                   fs="1.2rem"

@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const FlexRowCenter = (props) => {
-  const onClickHandler = ()=>{
-    props.onClick()
-  }
+  const onClickHandler = () => {
+    props.onClick();
+  };
 
   switch (props.type) {
     case "add-header":
@@ -15,23 +15,16 @@ const FlexRowCenter = (props) => {
       return <LoginFlexRow {...props}>{props.children}</LoginFlexRow>;
     case "full-height":
       return <FullHeight {...props}>{props.children}</FullHeight>;
-    case 'side-nav-wrap':
-      return <SideNavWrapper {...props}>{props.children}</SideNavWrapper>
+    case "side-nav-wrap":
+      return <SideNavWrapper {...props}>{props.children}</SideNavWrapper>;
+    case "flex":
+      return <FlexGrow {...props}>{props.children}</FlexGrow>;
+    case "post-button-group":
+      return <PostButtonGroup {...props}>{props.children}</PostButtonGroup>;
+    case "post-add-comment":
+      return <PostAddComment {...props}>{props.children}</PostAddComment>;
     default:
-      return (
-        <StFlexRowCenter
-          className={props.className}
-          onClick={props.onClick}
-          mg={props.mg}
-          hg={props.hg}
-          pd={props.pd}
-          gap={props.gap}
-          justify={props.justify}
-          align={props.align}
-        >
-          {props.children}
-        </StFlexRowCenter>
-      );
+      return <StFlexRowCenter {...props}>{props.children}</StFlexRowCenter>;
   }
 };
 
@@ -39,7 +32,7 @@ export default FlexRowCenter;
 
 export const StFlexRowCenter = styled.div`
   width: 100%;
-  height: ${({ hg }) => hg || 'none'};
+  height: ${({ hg }) => hg || "none"};
   display: flex;
   flex-direction: row;
   align-items: ${({ align }) => align || "center"};
@@ -65,10 +58,33 @@ const LoginFlexRow = styled(StFlexRowCenter)`
 const FullHeight = styled(StFlexRowCenter)`
   height: 100%;
 `;
+const FlexGrow = styled(StFlexRowCenter)`
+  flex: 1;
+`;
 const SideNavWrapper = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: center;
-gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+`;
+const PostButtonGroup = styled(StFlexRowCenter)`
+  padding: var(--ig-post-padding);
+  .icon {
+    cursor: pointer;
+    &:hover {
+      filter: var(--ig-elevated-sp-filter);
+    }
+  }
+  .heart-fill {
+    filter: var(--ig-heartfill-filter);
+  }
+  .chat {
+    transform: scaleX(-1);
+  }
+`;
+const PostAddComment = styled(PostButtonGroup)`
+  padding: 0.1rem 0;
+  border-top: 1px solid var(--ig-elevated-separator);
+  gap:0.5rem
 `;

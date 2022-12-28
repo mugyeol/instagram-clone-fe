@@ -4,6 +4,7 @@ import signIn from "../modules/signInSlice";
 import signUp from "../modules/signUpSlice";
 import modal from "../modules/modalSlice";
 import insta from "../modules/postSlice";
+import detail from '../modules/detailSlice'
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     signUp,
     modal,
     insta,
+    detail
   },
 });
 
