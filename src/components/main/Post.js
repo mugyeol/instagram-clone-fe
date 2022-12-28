@@ -6,9 +6,18 @@ import { AiFillHeart, AiOutlineHeart, AiFillSmile } from "react-icons/ai";
 import { IoPaperPlaneOutline, IoChatbubbleOutline } from "react-icons/io5";
 import { FiBookmark } from "react-icons/fi";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { __postLike } from "../../redux/modules/likeSlice";
+import { __getInsta } from "../../redux/modules/postSlice";
 
 const Post = () => {
-  const [like, setLike] = useState(false);
+  const dispatch = useDispatch();
+  const { insta } = useSelector((state) => state.insta);
+  const [like, setLike] = useState(true);
+
+  const onClick = () => {
+    setLike((like) => !like);
+  };
 
   return (
     <Fragment>
@@ -25,7 +34,7 @@ const Post = () => {
                       borderRadius: "70%",
                       objectFit: "cover",
                     }}
-                    src="https://w.namu.la/s/3e2618339413fcba4214fd1fe2dd593dadb5466ffbd375b9522e26c58648cb71350fb0a925f25ad39dad1f6c1bdd72d9b02673d1aada5530d6a979f51e60b5cdeff30ac82f789ad4f9b3ea8e8ebf49338f1c1059624da738c6eea1ce9da1572f"
+                    src="https://w.namu.la/s/2b1a2f3bbc967046f46bf38d5a87efed1103cb11567c7749339ac3e139407312c0e3e8ff6c19a7bafe8a37b83961094e75a4313da9d4dff64b1c82fdd988ebdac78dd5f3622ef9b324d2f043335ba7ae0fb7e8065c0ab358052f2b0a33ed3988"
                   />
                 </div>
                 <p className="username">hm_son7</p>
@@ -33,15 +42,29 @@ const Post = () => {
               <img src="img/option.PNG" className="options" alt="" />
             </div>
             <img
-              src="https://w.namu.la/s/2b1a2f3bbc967046f46bf38d5a87efed1103cb11567c7749339ac3e139407312c0e3e8ff6c19a7bafe8a37b83961094e75a4313da9d4dff64b1c82fdd988ebdac78dd5f3622ef9b324d2f043335ba7ae0fb7e8065c0ab358052f2b0a33ed3988"
               className="post-image"
+              src="https://w.namu.la/s/3e2618339413fcba4214fd1fe2dd593dadb5466ffbd375b9522e26c58648cb71350fb0a925f25ad39dad1f6c1bdd72d9b02673d1aada5530d6a979f51e60b5cdeff30ac82f789ad4f9b3ea8e8ebf49338f1c1059624da738c6eea1ce9da1572f"
               alt=""
             />
-           <div className="post-content">
+            <div className="post-content">
               <div className="reaction-wrapper">
-                <button className="btn1">
-                  <AiOutlineHeart style={{ width: "24", height: "24" }} />
-                </button>
+                <butto onClick={onClick}>
+                  {like ? (
+                    <AiOutlineHeart
+                      style={{ width: "30", height: "30" }}
+                      className="bts"
+                    />
+                  ) : (
+                    <AiFillHeart
+                      className="bts"
+                      style={{
+                        color: "red",
+                        width: "30",
+                        height: "30",
+                      }}
+                    />
+                  )}
+                </butto>
                 <button>
                   <IoChatbubbleOutline style={{ width: "24", height: "24" }} />
                 </button>
@@ -161,11 +184,6 @@ const Fragment = styled.div`
     border-top: 1px solid var(--ig-elevated-background);
   }
 
-  .comment-wrapper .icon {
-    height: 30px;
-    border-radius: 2px white;
-  }
-
   .comment-wrapper > input {
     background-color: var(--ig-elevated-separator #363636);
   }
@@ -199,7 +217,7 @@ const Fragment = styled.div`
     margin-top: -20px;
     align-items: center;
   }
-  
+
   .reaction-wrapper > button {
     align-items: center;
     background: transparent;
@@ -248,6 +266,21 @@ const Fragment = styled.div`
   .smil {
     width: 24px;
     height: 24px;
+  }
+
+  .bts {
+    width: 24;
+    height: 24;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bts :hover {
+    fill: var(--ig-elevated-separator);
   }
 `;
 // 현재의 FlexColum, FlexRow, Card에 props추가 해야하는 경우

@@ -7,11 +7,11 @@ const initialState = {
   error: null,
 };
 
-export const __getInsta = createAsyncThunk(
-  "insta/getInsta",
+export const __postLike = createAsyncThunk(
+  "like/postLike",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/insta");
+      const data = await axios.post("http://localhost:3001/insta");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -19,23 +19,23 @@ export const __getInsta = createAsyncThunk(
   }
 );
 
-export const postSlice = createSlice({
-  name: "insta",
+export const likeSlice = createSlice({
+  name: "like",
   initialState,
   reducers: {},
   extraReducers: {
-    [__getInsta.pending]: (state) => {
+    [__postLike.pending]: (state) => {
       state.isLoading = true;
     },
-    [__getInsta.fulfilled]: (state, action) => {
+    [__postLike.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.todos = action.payload;
+      state.insta = action.payload;
     },
-    [__getInsta.rejected]: (state, action) => {
+    [__postLike.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
   },
 });
 
-export default postSlice.reducer;
+export default likeSlice.reducer;
