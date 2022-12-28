@@ -1,10 +1,10 @@
 import React from "react";
 import Post from "./Post";
 import styled from "styled-components";
-import { StFlexColumn } from "../../components/ui/layout/FlexColumn";
-import FlexColumn from "../../components/ui/layout/FlexColumn";
+import { StFlexColumn } from "../../components/layout/FlexColumn";
+import FlexColumn from "../../components/layout/FlexColumn";
 import { storyMock } from "../../asset/main";
-import Card from "../ui/layout/Card";
+import Card from "../layout/Card";
 
 const PostList = () => {
   const arr = new Array(100).fill("mock data");

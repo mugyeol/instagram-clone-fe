@@ -11,7 +11,17 @@ const Img = (props) => {
     case "login-img":
       return <LoginImage src={props.src} />;
     case "circle-profile":
-      return <CircleProfile src={props.src} />;
+      return <CircleProfile {...props} />;
+    case "store-image":
+      return <StoreImage src={props.src} />;
+    case "login-left":
+      return <LoginLeftIcon src={props.src} />;
+    case "login-right":
+      return <LoginRightIcon src={props.src} />;
+    case "kakao-chat":
+      return <KakaoChatIcon src={props.src} />;
+    case "detail-image":
+      return <DetailImage src={props.src} />;
     default:
       return <StImg src={props.src} />;
   }
@@ -39,7 +49,31 @@ const LoginImage = styled.img`
   height: 60rem;
 `;
 const CircleProfile = styled.img`
-  width: 4rem;
-  height: 4rem;
+  width: ${({ wd }) => wd || "4rem"};
+  height: ${({ hg }) => hg || "4rem"};
   border-radius: 50%;
 `;
+const StoreImage = styled.img`
+  width: 12rem;
+  height: 4rem;
+  cursor: pointer;
+`;
+const LoginLeftIcon = styled.img`
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0 1rem 0;
+`;
+const LoginRightIcon = styled.img`
+  margin: 0 1rem 0 0.3rem;
+  width: 1.6rem;
+  height: 1.6rem;
+`;
+const KakaoChatIcon = styled.img`
+  width: 1.8rem;
+  height: 1.8rem;
+  filter: var(--ig-secondary-logo);
+`
+const DetailImage = styled.img`
+  width: 100%;
+  height: 100%;
+`

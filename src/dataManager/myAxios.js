@@ -11,7 +11,8 @@ myAxios.interceptors.request.use((config) => {
   return config;
 });
 myAxios.interceptors.response.use((response) => {
-  console.log("AXIOS RESPONSE TERCEPTOR RESPONSE : ", response);
+  console.log("AXIOS RESPONSE TERCEPTOR RESPONSE : ", response.headers['authorization']);
+  response.headers['authorization'] && localStorage.setItem('jwt',response.headers['authorization'])
   return response.data;
 },(error)=>{
   console.log("AXIOS error interceptors : ",error)

@@ -1,4 +1,3 @@
-
 import myAxios from "./myAxios";
 
 // login
@@ -10,6 +9,10 @@ export const $login = async (form) => {
 };
 export const $kakaoLogin = async (code) => {
   return await myAxios.get(`/api/member/login/kakao?code=${code}`);
+};
+
+export const $addPost = async (form) => {
+  return await myAxios.post("/api/posting", form);
 };
 
 //data request
@@ -25,15 +28,14 @@ export const $getToken = () => {
   return localStorage.getItem("jwt");
 };
 export const $uploadPost = async (dispenser) => {
-  console.log('dispenser',dispenser);
+  console.log("dispenser", dispenser);
   const data = await myAxios.post(`/post`, dispenser);
   console.log("response data", data);
-  return data
+  return data;
 };
-export const $updatePost = async (postId,form) => {
-  console.log('dispenser',form);
+export const $updatePost = async (postId, form) => {
+  console.log("dispenser", form);
   const data = await myAxios.put(`/post/${postId}`, form);
   console.log("response data", data);
-  return data
+  return data;
 };
-

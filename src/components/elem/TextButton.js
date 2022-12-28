@@ -9,7 +9,7 @@ function TextButton(props) {
 
   const TextButton = !props.type ? CursorPointer : TEXT_BUTTONS[props.type];
 
-  return <TextButton>{props.children}</TextButton>;
+  return <TextButton onClick={props.onClick}>{props.children}</TextButton>;
 }
 
 export default TextButton;

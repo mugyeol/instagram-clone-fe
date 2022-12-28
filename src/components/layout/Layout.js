@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import FlexRow, { StFlexRow } from "../../ui/layout/FlexRow";
-import SideBar from "../../sidebar/SideBar";
+import FlexRowCenter from "./FlexRowCenter";
+import SideBar from "../sidebar/SideBar";
 
 const Layout = ({ children }) => {
   return (
-    <FlexRow align="flex-start">
+    <FlexRowCenter align="flex-start" justify='flex-start'>
       <SideBar />
       <Wrapper>{children}</Wrapper>
-    </FlexRow>
+    </FlexRowCenter>
   );
 };
 

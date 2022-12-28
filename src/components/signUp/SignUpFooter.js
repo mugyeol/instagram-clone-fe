@@ -1,13 +1,12 @@
 import React from "react";
-import { Wrap, Stack, Img, Card } from "../ui";
 
 import { appStore, googlePlay } from "../../asset/login";
 import { useNavigate } from "react-router-dom";
 import styled, {css} from "styled-components";
-import { StCard } from "../ui/layout/Card";
-import FlexColumnCenter from "../ui/layout/FlexColumnCenter";
-import FlexRowCenter from "../ui/layout/FlexRowCenter";
-import { colors } from "../ui/color";
+import { StCard } from "../layout/Card";
+import FlexColumnCenter from "../layout/FlexColumnCenter";
+import FlexRowCenter from "../layout/FlexRowCenter";
+import Img from "../elem/Img";
 
 const SignUpFooter = ({ isLogin, isSignIn }) => {
   const navigate = useNavigate();
@@ -43,16 +42,10 @@ const SignUpFooter = ({ isLogin, isSignIn }) => {
             앱을 다운로드 하세요.
           </span>
           <FlexRowCenter gap="0.8rem" direction="row">
-            <Img
-              wd="13.5rem"
-              hg="4rem"
-              style={{ cursor: "pointer" }}
+            <Img type='store-image'
               src={googlePlay}
             />
-            <Img
-              wd="13.5rem"
-              hg="4rem"
-              style={{ cursor: "pointer" }}
+            <Img type='store-image'
               src={appStore}
             />
           </FlexRowCenter>
