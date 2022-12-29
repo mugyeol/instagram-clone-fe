@@ -6,12 +6,16 @@ import Layout from "../components/layout/Layout";
 import { useDispatch } from 'react-redux';
 import { $getToken } from "../dataManager/myQueries";
 import { __getUser } from "../redux/modules/userSlice";
+import { useNavigate } from "react-router-dom";
 const MainPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   console.log('is true',$getToken()?.startsWith("bearer"))
 
-  if ($getToken()?.startsWith("Bearer")) {
+  if ($getToken()) {
     dispatch(__getUser());
+  }else{
+    navigate('/sign-in')
   }
   return (
     <Layout>

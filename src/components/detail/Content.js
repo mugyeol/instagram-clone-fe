@@ -9,7 +9,7 @@ import Comment from "./Comment";
 function Content() {
   const comments = useSelector((state) => state.detail.comments);
   const postDetail = useSelector((state)=> state.detail.postDetail)
-  console.log('postDetail',postDetail)
+  console.log('comments',comments)
 
   return (
     <ScrollDiv>
@@ -20,14 +20,14 @@ function Content() {
           {postDetail.contents && handleContent(postDetail.contents)}
         </div>
       </FlexRowCenter>
-      {comments.length &&
+      {comments.length >0 ?
         comments.map((comment) => (
           // todo: 모듈화 시키기
           // <Comment key={comment.commentId} comment={comment}/>
           <FlexRowCenter
            justify="flex-start" align="flex-start" gap="2rem">
           {console.log('hi')}
-            <Img wd="3.5rem" hg="3.5rem" type="circle-profile" src={profile} />
+            <Img wd="3.5rem" hg="3.5rem" type="circle-profile" src={comment.profileImg} />
             <div className="content">
               <span style={{ fontWeight: 500, fontSize: "1.4rem" }}>
                 {comment.nickName}
@@ -35,7 +35,8 @@ function Content() {
               {postDetail.contents && handleContent(comment.comment)}
             </div>
           </FlexRowCenter>
-        ))}
+        )): null
+      }
     </ScrollDiv>
   );
 }

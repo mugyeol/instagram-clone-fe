@@ -25,7 +25,6 @@ const Detail = (props) => {
       <StGrid>
         {/* detail image */}
         <DetailImage/>
-
         <FlexColumnCenter
           style={{ border: "1px solid var(--ig-elevated-separator)" }}
           justify={flexStart}

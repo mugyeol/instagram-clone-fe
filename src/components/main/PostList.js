@@ -7,13 +7,9 @@ import { storyMock } from "../../asset/main";
 import Card from "../layout/Card";
 
 const PostList = () => {
-  const arr = new Array(100).fill("mock data");
-  console.log(arr);
   return (
     <FlexColumn gap={"2rem"}>
-      {arr.map((mock, index) => (
-        <Post key={index} />
-      ))}
+        <Post />
     </FlexColumn>
   );
 };

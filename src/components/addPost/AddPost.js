@@ -17,14 +17,14 @@ const AddPost = () => {
     console.log("e target ", e.target);
     console.log("reader", reader);
 
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = (e) => {
-      console.log("read as data url", e.target.result);
-    };
     // reader.readAsDataURL(e.target.files[0]);
-    // reader.onload = (e)=>{
-    //   openModal({type:'addPostImg', props:{base64:e.target.result}} )
-    // }
+    // reader.onload = (e) => {
+    //   console.log("read as data url", e.target.result);
+    // };
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = (e)=>{
+      openModal({type:'addPostImg', props:{base64:e.target.result}} )
+    }
   };
 
   return (
