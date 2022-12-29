@@ -2,10 +2,8 @@ import React from "react";
 import { handleContent } from "../../lib/ContentHandler";
 import ScrollDiv from "../layout/ScrollDiv";
 import FlexRowCenter from "../layout/FlexRowCenter";
-import { profile } from "../../asset/navbar";
 import Img from "../elem/Img";
 import { useSelector } from "react-redux";
-import Comment from "./Comment";
 function Content() {
   const comments = useSelector((state) => state.detail.comments);
   const postDetail = useSelector((state)=> state.detail.postDetail)
@@ -14,7 +12,7 @@ function Content() {
   return (
     <ScrollDiv>
       <FlexRowCenter justify="flex-start" align="flex-start" gap="2rem">
-        <Img wd="3.5rem" hg="3.5rem" type="circle-profile" src={profile} />
+        <Img wd="3.5rem" hg="3.5rem" type="circle-profile" src={postDetail.profileImg} />
         <div className="content">
           <span style={{ fontWeight: 500, fontSize: "1.4rem" }}>{postDetail.nickname}</span>{" "}
           {postDetail.contents && handleContent(postDetail.contents)}

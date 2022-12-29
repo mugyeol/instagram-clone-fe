@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   isValidUsername,
   isValidId,

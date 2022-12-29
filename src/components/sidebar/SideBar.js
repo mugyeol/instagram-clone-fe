@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "../../components/layout/Card";
 import FlexColumnCenter from "../../components/layout/FlexColumnCenter";
-import { profile } from "../../asset/navbar";
 import { flexStart } from "../../components/layout/className";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../Router";
@@ -11,7 +10,6 @@ import styled from "styled-components";
 import { instagram } from "../../asset/navbar";
 import FlexRowCenter from "../layout/FlexRowCenter";
 import Img from "../elem/Img";
-import { CiSettings } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 import { $removeToken } from "../../dataManager/myQueries";
 import { useSelector } from "react-redux";
@@ -48,15 +46,6 @@ const SideBar = () => {
           <Card type="sideBarItem">
             <FlexRowCenter
               type="side-nav-wrap"
-              onClick={() => openModal({ type: "detail", props: { id: 3 } })}
-            >
-              <CiSettings size={30} />
-              <h2>상세 작업중</h2>
-            </FlexRowCenter>
-          </Card>
-          <Card type="sideBarItem">
-            <FlexRowCenter
-              type="side-nav-wrap"
               onClick={() => openModal({ type: "addPost" })}
             >
               <AiOutlinePlusSquare size={30} />
@@ -65,7 +54,7 @@ const SideBar = () => {
           </Card>
           <Card type="sideBarItem">
             <FlexRowCenter type="side-nav-wrap"
-              onClick={() => openModal({ type: "alert"})}
+             
             >
               <Img
                 type="circle-profile"

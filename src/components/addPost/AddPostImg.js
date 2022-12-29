@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FlexColumnCenter from "../../components/layout/FlexColumnCenter";
 import FlexRowCenter from "../../components/layout/FlexRowCenter";
-import { addPostMsg } from "../../dataManager/messageVariables";
 import ModalWrapper from "../../modal/Modal";
 import Img from "../elem/Img";
 import { BsArrowLeft } from "react-icons/bs";
 import Textarea, { TEXTAREA_MAX_LENGTH } from "../elem/Textarea";
-import { profile } from "../../asset/navbar";
 import { VscSmiley } from "react-icons/vsc";
 import Span from "../elem/Span";
 import TextButton from "../elem/TextButton";
-import { $addPost } from "../../dataManager/myQueries";
 import { uploadBase64ToS3 } from "../../dataManager/imageQueries";
 import useModal from "../../modal/hooks/useModal";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SelectedImages from "./SelectedImages";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  __addPost,
   __uploadPost,
-  __postUploaded,
 } from "../../redux/modules/postSlice";
 const AddPostImg = (props) => {
-  const navigate = useNavigate();
+  const user = useSelector(state=>state.user)
   const { openModal, closeModal } = useModal();
   const { isLoading } = useSelector((state) => state.post);
   const dispatch = useDispatch();
@@ -55,8 +49,6 @@ const AddPostImg = (props) => {
         closeModal();
         
       }
-// openModal({type:'alert'})
-        // alert("게시물 작성이 완료되었습니다");
     
     });
   };
@@ -86,8 +78,8 @@ const AddPostImg = (props) => {
           <SelectedImages base64={props.base64} />
           <FlexColumnCenter type="addpost-content">
             <FlexRowCenter gap="1rem">
-              <Img type="circle-profile" src={profile} />
-              <span style={{ flex: 1, fontWeight: 700 }}>htpadkorik</span>
+              <Img type="circle-profile" src={user.profileImg} />
+              <span style={{ flex: 1, fontWeight: 700 }}>{user.nickname}</span>
             </FlexRowCenter>
             <Textarea value={form.contents} onChange={onChangeHandler} />
             <FlexRowCenter justify="space-between">
@@ -105,11 +97,9 @@ const AddPostImg = (props) => {
           </FlexColumnCenter>
         </StGrid>
       </FlexColumnCenter>
-      {/* {loadingState ? <Overlay>로딩중...</Overlay> : null} */}
       {loadingState ? (
         <Overlay>
           <Spinner/>
-          {/* <div className="ids-dual-ring"></div> */}
         </Overlay>
       ) : null}
     </ModalWrapper>

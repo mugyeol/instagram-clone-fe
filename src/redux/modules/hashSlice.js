@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import myAxios from "../../dataManager/myAxios";
 
 const initialState = {
@@ -12,6 +11,7 @@ export const __getHashTagList = createAsyncThunk(
   "hashtag",
   async (payload, thunkAPI) => {
     try {
+      console.log(payload)
       const data = await myAxios.get(`api/posting/hashtag/${payload}`);
       console.log('hash',data)
       return thunkAPI.fulfillWithValue(data.data);

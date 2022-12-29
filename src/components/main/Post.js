@@ -6,10 +6,11 @@ import { AiFillHeart, AiOutlineHeart, AiFillSmile } from "react-icons/ai";
 import { IoPaperPlaneOutline, IoChatbubbleOutline } from "react-icons/io5";
 import { FiBookmark } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { __deletePost, __getInsta } from "../../redux/modules/postSlice";
+import {  __getInsta } from "../../redux/modules/postSlice";
 import { __postLike } from "../../redux/modules/likeSlice";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import useModal from "../../modal/hooks/useModal";
+import { deleteMsg } from "../../dataManager/messageVariables";
+import { handleContent } from "../../lib/ContentHandler";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -59,17 +60,17 @@ const Post = () => {
                 </div>
                 {post.nickname === nickname ? (
                   <div
-                    style={{ color: "var(--ig-color-red)" }}
-                    onClick={() => dispatch(__deletePost({ postId: post.id }))}
+                    style={{ cursor: "pointer", color: "var(--ig-color-red)" }}
+                    onClick={() =>
+                      openModal({
+                        type: "alert",
+                        props: { ...deleteMsg, postId: post.id },
+                      })
+                    }
                   >
                     삭제
                   </div>
                 ) : null}
-
-                {/* <HiOutlineDotsHorizontal
-                  onClick={() => dispatch(__deletePost({ postId: post.id }))}
-                  size={25}
-                /> */}
               </div>
               <img
                 onClick={() =>
@@ -81,12 +82,12 @@ const Post = () => {
               />
               <div className="post-content">
                 <div className="reaction-wrapper">
-                  <button onClick={() => onClick(post.id)}>
+                  <div onClick={() => onClick(post.id)}>
                     {post.postingLike ? (
                       <AiFillHeart
                         className="bts"
                         style={{
-                          color: "var(--ig-heartfill-filter)",
+                          filter: "var(--ig-heartfill-filter)",
                           width: "30",
                           height: "30",
                         }}
@@ -97,7 +98,7 @@ const Post = () => {
                         className="bts"
                       />
                     )}
-                  </button>
+                  </div>
                   <button>
                     <IoChatbubbleOutline
                       onClick={() =>
@@ -116,9 +117,11 @@ const Post = () => {
                   </button>
                 </div>
                 <p className="likes">좋아요 {post.likeCount} 개</p>
-                <p className="description">
-                  <span>{post.nickname} </span> {post.contents}
-                </p>
+                <div className="description">
+                  <StDiv>
+                  <span>{post.nickname} </span> {post.contents && handleContent(post.contents)}
+                  </StDiv>
+                </div>
               </div>
               <div className="comment-wrapper">
                 <button>
@@ -140,7 +143,13 @@ const Post = () => {
 };
 
 export default Post;
+const StDiv = styled.div`
 
+    width: 85%;
+    overflow: hidden;
+    word-break: break-all;
+    margin: auto 0;
+`;
 const Fragment = styled.div`
   display: flex;
   flex-direction: column;
@@ -327,7 +336,5 @@ const Fragment = styled.div`
   }
 
   .bts :hover {
-    /* fill: var(--ig-elevated-separator); */
   }
 `;
-// 현재의 FlexColum, FlexRow, Card에 props추가 해야하는 경우

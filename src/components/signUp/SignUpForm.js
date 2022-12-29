@@ -20,9 +20,7 @@ import {
   xMark,
 } from "../../asset/login/index";
 import {
-  __cleanUp,
   __showPwd,
-  __submitForm,
   __typeLoginId,
   __typeUsername,
   __typeNickname,
@@ -238,7 +236,7 @@ const SignUpForm = ({ isLogin }) => {
               <div style={{color:'var(--color-red)', marginTop:'1rem'}}>
                 {!loginIdState.isValid && loginIdState.value !==''
                   ? messages.idInvalid
-                  : passwordState.isValid && passwordState.value !==''
+                  : !passwordState.isValid && passwordState.value !==''
                   ? messages.pwdInvalid
                   : null}
               </div>
