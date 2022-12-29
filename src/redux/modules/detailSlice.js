@@ -6,7 +6,7 @@ export const __getPostDetail = createAsyncThunk(
     try {
       console.log("getPostDetail payload", payload);
       const res = await myAxios.get(`/api/posting/${payload}`);
-      console.log("date get post", res);
+      console.log("datail get post", res);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       console.log("get post error", error.message);
@@ -51,7 +51,7 @@ const initialState = {
   userNickname: "",
   postDetail: {},
   comments: [],
-  imgList:[],
+  imgList: [],
   comment: "",
   isLoading: false,
   error: null,
@@ -83,8 +83,8 @@ const detailSlice = createSlice({
     },
     [__submitComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.comment = '';
-      state.comments = [action.payload, ...state.comments]
+      state.comment = "";
+      state.comments = [...state.comments, action.payload];
     },
     [__submitComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -95,8 +95,8 @@ const detailSlice = createSlice({
     },
     [__liking.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.postDetail.postingLike = action.payload.like
-      state.postDetail.likeCount = action.payload.likeCount
+      state.postDetail.postingLike = action.payload.like;
+      state.postDetail.likeCount = action.payload.likeCount;
     },
     [__liking.rejected]: (state, action) => {
       state.isLoading = false;
@@ -104,5 +104,5 @@ const detailSlice = createSlice({
     },
   },
 });
-export const {__typeComment} = detailSlice.actions;
+export const { __typeComment } = detailSlice.actions;
 export default detailSlice.reducer;

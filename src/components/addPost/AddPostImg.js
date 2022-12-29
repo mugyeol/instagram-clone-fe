@@ -16,22 +16,20 @@ import useModal from "../../modal/hooks/useModal";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SelectedImages from "./SelectedImages";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  __addPost,
+  __uploadPost,
+  __postUploaded,
+} from "../../redux/modules/postSlice";
 const AddPostImg = (props) => {
   const navigate = useNavigate();
   const { openModal, closeModal } = useModal();
-
+  const { isLoading } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
   const [form, setForm] = useState({ contents: "", imgList: [] });
+  const [loadingState, setIsLoading] = useState(false);
   console.log("form", form);
-  useEffect(() => {
-    // uploadBase64ToS3(props.base64).then((data) =>
-    //   setForm((prev) => {
-    //     return {
-    //       ...prev,
-    //       imgList: [{ postingImgNum: 1, postingImg: data.Location }],
-    //     };
-    //   })
-    // );
-  }, []);
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
@@ -43,23 +41,24 @@ const AddPostImg = (props) => {
     });
   };
   const onSubmitHandler = () => {
-    $addPost(form)
-      .then((res) => {
-        if (res.status === 200) {
-          alert("게시물 작성이 완료되었습니다");
-          closeModal();
-        } else {
-          alert("alert" + res.message);
-        }
-      })
-      .catch((err) => {
-        const status = err.response.status;
-        if (status === 403) {
-          alert("로그인 세션이 만료되었습니다.");
-          closeModal();
-          navigate("/sign-in");
-        }
-      });
+    if (form.contents === "") return alert("내용을 입력해주세요");
+    setIsLoading(true);
+    uploadBase64ToS3(props.base64).then((data) => {
+      const imgList = [{ postingImgNum: 1, postingImg: data.Location }];
+      const formData = {
+        contents: form.contents,
+        imgList: imgList,
+      };
+      dispatch(__uploadPost(formData));
+      if (!isLoading) {
+        setIsLoading(false)
+        closeModal();
+        
+      }
+// openModal({type:'alert'})
+        // alert("게시물 작성이 완료되었습니다");
+    
+    });
   };
   return (
     <ModalWrapper type="addPostImg">
@@ -106,6 +105,13 @@ const AddPostImg = (props) => {
           </FlexColumnCenter>
         </StGrid>
       </FlexColumnCenter>
+      {/* {loadingState ? <Overlay>로딩중...</Overlay> : null} */}
+      {loadingState ? (
+        <Overlay>
+          <Spinner/>
+          {/* <div className="ids-dual-ring"></div> */}
+        </Overlay>
+      ) : null}
     </ModalWrapper>
   );
 };
@@ -116,4 +122,40 @@ const StGrid = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+`;
+const Spinner = styled.div`
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+
+    &:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`
+const Overlay = styled.div`
+  font-size: 2rem;
+  position: fixed;
+  top: 50%;
+  padding: 2rem;
+  left: 50%;
+  z-index: 100000;
+  border-radius:10px;
+  transform: translate(-50%, -50%);
+  background-color: rgb(0, 0, 0, 0.5);
 `;

@@ -12,7 +12,7 @@ function DetailImage() {
         <Img
           key={img.posingImgNum}
           type="detail-image"
-          src="https://hanghaecatsanddogs.s3.ap-northeast-2.amazonaws.com/0b373c5d-fa78-6cbd-fbf5-a20f9b5a4847.jpeg"
+          src={img.postingImg}
         />
       ))}
     </FlexColumnCenter>

@@ -6,17 +6,21 @@ import { AiFillHeart, AiOutlineHeart, AiFillSmile } from "react-icons/ai";
 import { IoPaperPlaneOutline, IoChatbubbleOutline } from "react-icons/io5";
 import { FiBookmark } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { __getInsta } from "../../redux/modules/postSlice";
+import { __deletePost, __getInsta } from "../../redux/modules/postSlice";
 import { __postLike } from "../../redux/modules/likeSlice";
-import {HiOutlineDotsHorizontal} from 'react-icons/hi'
-
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import useModal from "../../modal/hooks/useModal";
 
 const Post = () => {
   const dispatch = useDispatch();
-  const postList  = useSelector((state) => state.post.postList);
-  console.log('postList',postList[0].imgList[0]?.postingImg)
-  const [like, setLike] = useState(false);
+  const postList = useSelector((state) => state.post.postList);
+  const nickname = useSelector((state) => state.user.nickname);
+  console.log("nickname", nickname);
+  const isNewUpload = useSelector((state) => state.post.isNewUpload);
 
+  console.log("isNewUpload", isNewUpload);
+  const [like, setLike] = useState(false);
+  const { openModal } = useModal();
   const onClick = (data) => {
     console.log(data);
     dispatch(__postLike(data));
@@ -25,42 +29,64 @@ const Post = () => {
 
   useEffect(() => {
     dispatch(__getInsta());
-  }, []);
+  }, [dispatch, isNewUpload]);
 
   return (
-      <Fragment>
-    {postList.map((post, index) => (
-      <Card key={index} border="1px solid var(--ig-elevated-separator)">
-        <FlexColumn>
-            <div className="post" >
+    <Fragment>
+      {postList.map((post, index) => (
+        <Card
+          type="post"
+          key={index}
+          border="1px solid var(--ig-elevated-separator)"
+        >
+          <FlexColumn>
+            <div className="post">
               <div className="info">
                 <div className="user">
                   <div className="profile-pic">
                     <img
-                    alt=""
+                      alt=""
                       style={{
                         height: "32px",
                         width: "32px",
                         borderRadius: "70%",
                         objectFit: "cover",
                       }}
-                      src="https://w.namu.la/s/2b1a2f3bbc967046f46bf38d5a87efed1103cb11567c7749339ac3e139407312c0e3e8ff6c19a7bafe8a37b83961094e75a4313da9d4dff64b1c82fdd988ebdac78dd5f3622ef9b324d2f043335ba7ae0fb7e8065c0ab358052f2b0a33ed3988"
+                      src={post.profileImg}
                     />
                   </div>
                   <p className="username">{post.nickname}</p>
                 </div>
-                <HiOutlineDotsHorizontal size={25} />
+                {post.nickname === nickname ? (
+                  <div
+                    style={{ color: "var(--ig-color-red)" }}
+                    onClick={() => dispatch(__deletePost({ postId: post.id }))}
+                  >
+                    삭제
+                  </div>
+                ) : null}
 
+                {/* <HiOutlineDotsHorizontal
+                  onClick={() => dispatch(__deletePost({ postId: post.id }))}
+                  size={25}
+                /> */}
               </div>
-              <img className="post-image" src={post.imgList[0]?.postingImg} alt="" />
+              <img
+                onClick={() =>
+                  openModal({ type: "detail", props: { id: post.id } })
+                }
+                className="post-image"
+                src={post.imgList[0]?.postingImg}
+                alt=""
+              />
               <div className="post-content">
                 <div className="reaction-wrapper">
                   <button onClick={() => onClick(post.id)}>
-                    {post.like ? (
+                    {post.postingLike ? (
                       <AiFillHeart
                         className="bts"
                         style={{
-                          color: "red",
+                          color: "var(--ig-heartfill-filter)",
                           width: "30",
                           height: "30",
                         }}
@@ -74,6 +100,9 @@ const Post = () => {
                   </button>
                   <button>
                     <IoChatbubbleOutline
+                      onClick={() =>
+                        openModal({ type: "detail", props: { id: post.id } })
+                      }
                       style={{ width: "24", height: "24" }}
                     />
                   </button>
@@ -93,7 +122,7 @@ const Post = () => {
               </div>
               <div className="comment-wrapper">
                 <button>
-                  <AiFillSmile className="smil" />
+                  <AiFillSmile className="smile" size={30} />
                 </button>
                 <input
                   type="text"
@@ -103,11 +132,10 @@ const Post = () => {
                 <button className="comment-btn">post</button>
               </div>
             </div>
-        </FlexColumn>
-      </Card>
-    ))}
+          </FlexColumn>
+        </Card>
+      ))}
     </Fragment>
-
   );
 };
 
@@ -116,6 +144,7 @@ export default Post;
 const Fragment = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: var(--ig-primary-bacground);
   gap: 2rem;
 
   .post {
@@ -163,7 +192,7 @@ const Fragment = styled.div`
     width: 100%;
     height: 500px;
     object-fit: cover;
-    border:  transparent;
+    border: transparent;
   }
 
   .post-content {
@@ -280,9 +309,10 @@ const Fragment = styled.div`
     fill: var(--ig-elevated-separator);
   }
 
-  .smil {
+  .smile {
     width: 24px;
     height: 24px;
+    filter: var(--ig-elevated-sp-filter);
   }
 
   .bts {
@@ -297,7 +327,7 @@ const Fragment = styled.div`
   }
 
   .bts :hover {
-    fill: var(--ig-elevated-separator);
+    /* fill: var(--ig-elevated-separator); */
   }
 `;
 // 현재의 FlexColum, FlexRow, Card에 props추가 해야하는 경우

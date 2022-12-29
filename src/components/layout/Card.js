@@ -5,6 +5,7 @@ function Card (props) {
   const CARD_COMPONENTS = {
     default: StCard,
     sideBarItem: SideBarItem,
+    post:Post
   };
   const CardWrapper =
     !props.type
@@ -12,12 +13,7 @@ function Card (props) {
       : CARD_COMPONENTS[props.type];
   return (
     <CardWrapper
-      className={props.className}
-      wd={props.wd}
-      pd={props.pd}
-      mg={props.mg}
-      hg={props.hg}
-      border={props.border}
+      {...props}
     >
       {props.children}
     </CardWrapper>
@@ -43,3 +39,7 @@ const SideBarItem = styled(StCard)`
     background-color: var(--ig-secondary-background);
   }
 `;
+const Post = styled(StCard)`
+
+  background-color: var(--ig-primary-background);
+  `
