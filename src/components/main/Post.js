@@ -1,98 +1,108 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Card from "../../components/layout/Card";
-import FlexColumn from "../../components/layout/FlexColumn";
+import Card from "../layout/Card";
+import FlexColumn from "../layout/FlexColumn";
 import { AiFillHeart, AiOutlineHeart, AiFillSmile } from "react-icons/ai";
 import { IoPaperPlaneOutline, IoChatbubbleOutline } from "react-icons/io5";
 import { FiBookmark } from "react-icons/fi";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { __postLike } from "../../redux/modules/likeSlice";
 import { __getInsta } from "../../redux/modules/postSlice";
+import { __postLike } from "../../redux/modules/likeSlice";
 
 const Post = () => {
   const dispatch = useDispatch();
-  const { insta } = useSelector((state) => state.insta);
-  const [like, setLike] = useState(true);
+  const { data } = useSelector((state) => state.data);
+  const [like, setLike] = useState(false);
 
-  const onClick = () => {
-    setLike((like) => !like);
+  const onClick = (data) => {
+    console.log(data);
+    dispatch(__postLike(data));
+    setLike(!like);
   };
+
+  useEffect(() => {
+    dispatch(__getInsta());
+  }, []);
 
   return (
     <Fragment>
       <Card border="1px solid var(--ig-elevated-separator)">
         <FlexColumn>
-          <div className="post">
-            <div className="info">
-              <div className="user">
-                <div className="profile-pic">
-                  <img
-                    style={{
-                      height: "32px",
-                      width: "32px",
-                      borderRadius: "70%",
-                      objectFit: "cover",
-                    }}
-                    src="https://w.namu.la/s/2b1a2f3bbc967046f46bf38d5a87efed1103cb11567c7749339ac3e139407312c0e3e8ff6c19a7bafe8a37b83961094e75a4313da9d4dff64b1c82fdd988ebdac78dd5f3622ef9b324d2f043335ba7ae0fb7e8065c0ab358052f2b0a33ed3988"
-                  />
-                </div>
-                <p className="username">hm_son7</p>
-              </div>
-              <img src="img/option.PNG" className="options" alt="" />
-            </div>
-            <img
-              className="post-image"
-              src="https://w.namu.la/s/3e2618339413fcba4214fd1fe2dd593dadb5466ffbd375b9522e26c58648cb71350fb0a925f25ad39dad1f6c1bdd72d9b02673d1aada5530d6a979f51e60b5cdeff30ac82f789ad4f9b3ea8e8ebf49338f1c1059624da738c6eea1ce9da1572f"
-              alt=""
-            />
-            <div className="post-content">
-              <div className="reaction-wrapper">
-                <butto onClick={onClick}>
-                  {like ? (
-                    <AiOutlineHeart
-                      style={{ width: "30", height: "30" }}
-                      className="bts"
-                    />
-                  ) : (
-                    <AiFillHeart
-                      className="bts"
+          {data.map((datas) => (
+            <div className="post">
+              <div className="info">
+                <div className="user">
+                  <div className="profile-pic">
+                    <img
                       style={{
-                        color: "red",
-                        width: "30",
-                        height: "30",
+                        height: "32px",
+                        width: "32px",
+                        borderRadius: "70%",
+                        objectFit: "cover",
                       }}
+                      src="https://w.namu.la/s/2b1a2f3bbc967046f46bf38d5a87efed1103cb11567c7749339ac3e139407312c0e3e8ff6c19a7bafe8a37b83961094e75a4313da9d4dff64b1c82fdd988ebdac78dd5f3622ef9b324d2f043335ba7ae0fb7e8065c0ab358052f2b0a33ed3988"
                     />
-                  )}
-                </butto>
-                <button>
-                  <IoChatbubbleOutline style={{ width: "24", height: "24" }} />
-                </button>
-                <button>
-                  <IoPaperPlaneOutline style={{ width: "24", height: "24" }} />
-                </button>
-                <button className="btn4">
-                  <FiBookmark style={{ width: "24", height: "24" }} />
-                </button>
+                  </div>
+                  <p className="username">{datas.nickname}</p>
+                </div>
+                <img
+                  src={datas.imgList.postingImg}
+                  className="options"
+                  alt=""
+                />
               </div>
-              <p className="likes">좋아요 1,012 개</p>
-              <p clclassNamess="description">
-                <span>hm_son7 </span> 국민 여러분들 덕분에 이렇게 재밋는 축구를
-                할수 있어서 감사합니다 사랑합니다!!! 대한민국!!!
-              </p>
+              <img className="post-image" src={datas.postingImg} alt="" />
+              <div className="post-content">
+                <div className="reaction-wrapper">
+                  <butto onClick={() => onClick(datas.id)}>
+                    {datas.like ? (
+                      <AiFillHeart
+                        className="bts"
+                        style={{
+                          color: "red",
+                          width: "30",
+                          height: "30",
+                        }}
+                      />
+                    ) : (
+                      <AiOutlineHeart
+                        style={{ width: "30", height: "30" }}
+                        className="bts"
+                      />
+                    )}
+                  </butto>
+                  <button>
+                    <IoChatbubbleOutline
+                      style={{ width: "24", height: "24" }}
+                    />
+                  </button>
+                  <button>
+                    <IoPaperPlaneOutline
+                      style={{ width: "24", height: "24" }}
+                    />
+                  </button>
+                  <button className="btn4">
+                    <FiBookmark style={{ width: "24", height: "24" }} />
+                  </button>
+                </div>
+                <p className="likes">좋아요 {datas.likeCount} 개</p>
+                <p clclassNamess="description">
+                  <span>{datas.nickname} </span> {datas.contents}
+                </p>
+              </div>
+              <div class="comment-wrapper">
+                <button>
+                  <AiFillSmile className="smil" />
+                </button>
+                <input
+                  type="text"
+                  className="comment-box"
+                  placeholder="댓글 달기..."
+                />
+                <button className="comment-btn">post</button>
+              </div>
             </div>
-            <div class="comment-wrapper">
-              <button>
-                <AiFillSmile className="smil" />
-              </button>
-              <input
-                type="text"
-                className="comment-box"
-                placeholder="댓글 달기..."
-              />
-              <button className="comment-btn">post</button>
-            </div>
-          </div>
+          ))}
         </FlexColumn>
       </Card>
     </Fragment>
