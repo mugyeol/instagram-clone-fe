@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import myAxios from "../../dataManager/myAxios";
 
 const initialState = {
-  insta: [],
+  data: [],
   isLoading: false,
   error: null,
 };
@@ -10,8 +10,9 @@ const initialState = {
 export const __postLike = createAsyncThunk(
   "like/postLike",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
-      const data = await axios.post("http://localhost:3001/insta");
+      const data = await myAxios.put(`/api/like/posting/${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -29,7 +30,7 @@ export const likeSlice = createSlice({
     },
     [__postLike.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.insta = action.payload;
+      state.data = action.payload;
     },
     [__postLike.rejected]: (state, action) => {
       state.isLoading = false;
