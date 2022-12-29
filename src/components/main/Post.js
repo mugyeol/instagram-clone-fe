@@ -8,10 +8,13 @@ import { FiBookmark } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { __getInsta } from "../../redux/modules/postSlice";
 import { __postLike } from "../../redux/modules/likeSlice";
+import {HiOutlineDotsHorizontal} from 'react-icons/hi'
+
 
 const Post = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.data);
+  const postList  = useSelector((state) => state.post.postList);
+  console.log('postList',postList[0].imgList[0]?.postingImg)
   const [like, setLike] = useState(false);
 
   const onClick = (data) => {
@@ -25,15 +28,16 @@ const Post = () => {
   }, []);
 
   return (
-    <Fragment>
-      <Card border="1px solid var(--ig-elevated-separator)">
+      <Fragment>
+    {postList.map((post, index) => (
+      <Card key={index} border="1px solid var(--ig-elevated-separator)">
         <FlexColumn>
-          {data.map((datas) => (
-            <div className="post">
+            <div className="post" >
               <div className="info">
                 <div className="user">
                   <div className="profile-pic">
                     <img
+                    alt=""
                       style={{
                         height: "32px",
                         width: "32px",
@@ -43,19 +47,16 @@ const Post = () => {
                       src="https://w.namu.la/s/2b1a2f3bbc967046f46bf38d5a87efed1103cb11567c7749339ac3e139407312c0e3e8ff6c19a7bafe8a37b83961094e75a4313da9d4dff64b1c82fdd988ebdac78dd5f3622ef9b324d2f043335ba7ae0fb7e8065c0ab358052f2b0a33ed3988"
                     />
                   </div>
-                  <p className="username">{datas.nickname}</p>
+                  <p className="username">{post.nickname}</p>
                 </div>
-                <img
-                  src={datas.imgList.postingImg}
-                  className="options"
-                  alt=""
-                />
+                <HiOutlineDotsHorizontal size={25} />
+
               </div>
-              <img className="post-image" src={datas.postingImg} alt="" />
+              <img className="post-image" src={post.imgList[0]?.postingImg} alt="" />
               <div className="post-content">
                 <div className="reaction-wrapper">
-                  <butto onClick={() => onClick(datas.id)}>
-                    {datas.like ? (
+                  <button onClick={() => onClick(post.id)}>
+                    {post.like ? (
                       <AiFillHeart
                         className="bts"
                         style={{
@@ -70,7 +71,7 @@ const Post = () => {
                         className="bts"
                       />
                     )}
-                  </butto>
+                  </button>
                   <button>
                     <IoChatbubbleOutline
                       style={{ width: "24", height: "24" }}
@@ -85,12 +86,12 @@ const Post = () => {
                     <FiBookmark style={{ width: "24", height: "24" }} />
                   </button>
                 </div>
-                <p className="likes">좋아요 {datas.likeCount} 개</p>
-                <p clclassNamess="description">
-                  <span>{datas.nickname} </span> {datas.contents}
+                <p className="likes">좋아요 {post.likeCount} 개</p>
+                <p className="description">
+                  <span>{post.nickname} </span> {post.contents}
                 </p>
               </div>
-              <div class="comment-wrapper">
+              <div className="comment-wrapper">
                 <button>
                   <AiFillSmile className="smil" />
                 </button>
@@ -102,16 +103,21 @@ const Post = () => {
                 <button className="comment-btn">post</button>
               </div>
             </div>
-          ))}
         </FlexColumn>
       </Card>
+    ))}
     </Fragment>
+
   );
 };
 
 export default Post;
 
 const Fragment = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
   .post {
     width: 100%;
     height: 100%;
@@ -157,6 +163,7 @@ const Fragment = styled.div`
     width: 100%;
     height: 500px;
     object-fit: cover;
+    border:  transparent;
   }
 
   .post-content {

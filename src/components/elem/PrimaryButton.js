@@ -6,20 +6,7 @@ const PrimaryButton = (props) => {
     // props.onClick(e);
   };
 
-  return (
-    <StPrimaryBtn
-      className={props.className}
-      fontSize={props.fontSize}
-      name={props.name}
-      type={props.type || "button"}
-      onClick={props.onClick}
-      mg={props.mg}
-      bg={props.bg}
-      disabled={props.disabled}
-    >
-      {props.children}
-    </StPrimaryBtn>
-  );
+  return <StPrimaryBtn {...props}>{props.children}</StPrimaryBtn>;
 };
 
 export default PrimaryButton;
@@ -28,6 +15,7 @@ export const StPrimaryBtn = styled.button`
   border-radius: 5px;
   padding: 0.5rem 1.25rem;
   margin: ${({ mg }) => mg || "0"};
+  width: ${({ wd }) => wd || "none"};
   background-color: ${({ bg }) =>
     bg || css`var(--ig-primary-button-background)`};
   color: #fafafa;
@@ -47,7 +35,7 @@ export const StPrimaryBtn = styled.button`
     color: #fafafa;
     cursor: default;
   }
-  &:disabled{
+  &:disabled {
     background-color: var(--color-primary-invalid);
   }
   &:focus {

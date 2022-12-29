@@ -34,12 +34,10 @@ import FlexRowCenter from "../layout/FlexRowCenter";
 import PrimaryButton from "../elem/PrimaryButton";
 import Img from "../elem/Img";
 
-//하단 메세지
-// const messages = {
-//   idInvalid: `입력한 사용자 이름을 사용하는 계정을 찾을 수 없습니다.
-//   사용자 이름을 확인하고 다시 시도하세요.`,
-//   pwdInvalid: "잘못된 비밀번호입니다. 다시 확인하세요.",
-// };
+const messages = {
+  idInvalid: `유효하지 않은 이메일 형식입니다.`,
+  pwdInvalid: "비밀번호는 6자 이상의 숫자, 문자 조합이어야 합니다.",
+};
 const SignUpForm = ({ isLogin }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -125,14 +123,7 @@ const SignUpForm = ({ isLogin }) => {
   const onClickKakaoLogin = () => {
     connectKakao();
   };
-  const messages = {
-    emailInvalid: "이메일 형식이 맞지 않습니다.",
-    usernameInvalid:
-      "아이디 형식이 맞지 않습니다. 아이디는 4자리 이상, 10자리 이하의 소문자와 숫자 조합을 사용해주세요.",
-    passwordInvalid:
-      "비밀번호 형식이 맞지 안습니다. 8자리 이상, 15자리 이하의 영어 대,소문자, 숫자, 특수문자(!@#$%^&+=)를 사용해 주세요.",
-    passwordNotMatching: "비밀번호가 일치하지 않습니다.",
-  };
+
   return (
     <Fragment>
       <FlexColumnCenter justify={flexCenter} align={flexCenter}>
@@ -145,13 +136,13 @@ const SignUpForm = ({ isLogin }) => {
               onClick={onClickKakaoLogin}
             >
               <FlexRowCenter gap={"1.5rem"}>
-                <Img type='kakao-chat'
-                  src={chatLogo}
-                />
+                <Img type="kakao-chat" src={chatLogo} />
                 <span>카카오 로그인</span>
               </FlexRowCenter>
             </PrimaryButton>
-            <span style={{margin:'2rem 0'}} className="third-text">or</span>
+            <span style={{ margin: "2rem 0" }} className="third-text">
+              or
+            </span>
           </FlexColumnCenter>
           <form style={{ margin: "0 0 1rem" }} onSubmit={onSubmitHandler}>
             <FlexColumnCenter
@@ -161,7 +152,7 @@ const SignUpForm = ({ isLogin }) => {
             >
               <CardInput>
                 <FlexRowCenter>
-                  <Img type='login-left' src={postLogo} />
+                  <Img type="login-left" src={postLogo} />
                   <StInput
                     value={loginIdState.value}
                     name="loginId"
@@ -179,7 +170,7 @@ const SignUpForm = ({ isLogin }) => {
               </CardInput>
               <CardInput>
                 <FlexRowCenter>
-                  <Img type='login-left' src={humanLogo} />
+                  <Img type="login-left" src={humanLogo} />
                   <StInput
                     readOnly={inputReadOnlyState.usernameInput}
                     value={usernameState.value}
@@ -198,7 +189,7 @@ const SignUpForm = ({ isLogin }) => {
               </CardInput>
               <CardInput>
                 <FlexRowCenter>
-                  <Img type='login-left' src={settingLogo} />
+                  <Img type="login-left" src={settingLogo} />
                   <StInput
                     readOnly={inputReadOnlyState.nicknameInput}
                     value={nicknameState.value}
@@ -217,7 +208,7 @@ const SignUpForm = ({ isLogin }) => {
               </CardInput>
               <CardInput>
                 <FlexRowCenter>
-                  <Img type='login-left' src={lockLogo} />
+                  <Img type="login-left" src={lockLogo} />
                   <StInput
                     readOnly={inputReadOnlyState.passwordInput}
                     value={passwordState.value}
@@ -244,7 +235,13 @@ const SignUpForm = ({ isLogin }) => {
                   )}
                 </FlexRowCenter>
               </CardInput>
-
+              <div style={{color:'var(--color-red)', marginTop:'1rem'}}>
+                {!loginIdState.isValid && loginIdState.value !==''
+                  ? messages.idInvalid
+                  : passwordState.isValid && passwordState.value !==''
+                  ? messages.pwdInvalid
+                  : null}
+              </div>
               <FlexColumnCenter mg="1.5rem 2.5rem" gap="1.2rem">
                 <PrimaryButton
                   type="submit"
@@ -270,7 +267,6 @@ const Fragment = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-
 
   .rightLogo {
     margin: 0 1rem 0 0.3rem;

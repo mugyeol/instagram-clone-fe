@@ -7,7 +7,7 @@ import { __getUser } from './redux/modules/userSlice';
 import Router from './Router';
 function App() {
   const dispatch = useDispatch()
-  if($getToken()?.startsWith('Bearer')){
+  if($getToken()){
     dispatch(__getUser())
   }
   return (

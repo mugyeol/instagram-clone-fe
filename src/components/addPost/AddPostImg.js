@@ -18,7 +18,7 @@ import styled from "styled-components";
 import SelectedImages from "./SelectedImages";
 const AddPostImg = (props) => {
   const navigate = useNavigate();
-  const { openModal,closeModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const [form, setForm] = useState({ contents: "", imgList: [] });
   console.log("form", form);
@@ -33,7 +33,6 @@ const AddPostImg = (props) => {
     // );
   }, []);
 
-
   const onChangeHandler = (e) => {
     const value = e.target.value;
     setForm((prev) => {
@@ -45,14 +44,19 @@ const AddPostImg = (props) => {
   };
   const onSubmitHandler = () => {
     $addPost(form)
-      .then((res) =>
-        res.status === 200 ? closeModal() : alert("alert" + res.message)
-      )
+      .then((res) => {
+        if (res.status === 200) {
+          alert("게시물 작성이 완료되었습니다");
+          closeModal();
+        } else {
+          alert("alert" + res.message);
+        }
+      })
       .catch((err) => {
         const status = err.response.status;
         if (status === 403) {
-          alert('로그인 세션이 만료되었습니다.')
-          closeModal()
+          alert("로그인 세션이 만료되었습니다.");
+          closeModal();
           navigate("/sign-in");
         }
       });
@@ -64,7 +68,7 @@ const AddPostImg = (props) => {
           <div>
             <BsArrowLeft
               style={{ cursor: "pointer" }}
-              onClick={() => openModal({type:'addPost'})}
+              onClick={() => openModal({ type: "addPost" })}
               size={30}
             />
           </div>
@@ -80,7 +84,7 @@ const AddPostImg = (props) => {
         {/* //content */}
         <StGrid>
           {/* images */}
-          <SelectedImages base64={props.base64}/>
+          <SelectedImages base64={props.base64} />
           <FlexColumnCenter type="addpost-content">
             <FlexRowCenter gap="1rem">
               <Img type="circle-profile" src={profile} />

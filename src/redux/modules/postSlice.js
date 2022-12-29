@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import myAxios from "../../dataManager/myAxios";
 
 const initialState = {
-  data: [],
+  postList: [],
   isLoading: false,
   error: null,
 };
@@ -11,8 +11,9 @@ export const __getInsta = createAsyncThunk(
   "insta/getInsta",
   async (_, thunkAPI) => {
     try {
-      const { data } = await myAxios.get("api/posting");
-      return data;
+      const res = await myAxios.get("api/posting");
+      console.log('res',res)
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -20,7 +21,7 @@ export const __getInsta = createAsyncThunk(
 );
 
 export const postSlice = createSlice({
-  name: "data",
+  name: "post",
   initialState,
   reducers: {},
   extraReducers: {
@@ -29,7 +30,7 @@ export const postSlice = createSlice({
     },
     [__getInsta.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.postList = action.payload;
     },
     [__getInsta.rejected]: (state, action) => {
       state.isLoading = false;

@@ -14,8 +14,8 @@ export const isValidId = (id) => {
   );
 };
 export const isValidUsername = (username) => {
-  return username.length > 3;
+  return username.length > 1;
 };
 export const isValidNickname = (nickname) => {
-  return nickname.length > 3;
+  return nickname.length > 1;
 };

@@ -1,12 +1,13 @@
 import React from 'react'
+import Layout from '../components/layout/Layout'
 import ListOfHashTag from '../components/tag/ListOfHashTag'
 
-const MyPage = () => {
+const HashTagPage = () => {
   return (
-    <div>
+    <Layout>
       <ListOfHashTag/>
-    </div>
+    </Layout>
   )
 }
 
-export default MyPage
+export default HashTagPage
