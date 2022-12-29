@@ -14,6 +14,9 @@ export const $kakaoLogin = async (code) => {
 export const $addPost = async (form) => {
   return await myAxios.post("/api/posting", form);
 };
+// export const $getPost = async (id) => {
+//   return await myAxios.get(`/api/posting/${id}`);
+// };
 
 //data request
 export const $deletePost = async (postId) => {

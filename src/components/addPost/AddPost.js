@@ -14,18 +14,17 @@ const AddPost = () => {
   const { openModal, closeModal } = useModal();
   const onChangeFileHandler = (e) => {
     let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = (e)=>{
-      openModal({type:'addPostImg', props:{base64:e.target.result}} )
-    }
-    // uploadFileToS3(e.target.files[0])
-    //   .then((data) => {
-    //     console.log('data location',data.Location)
-    //     data.Location &&
-    //       openModal({ type: "addPostImg", props: {url:data.Location} });
-    //   })
-    //   .catch((err) => console.log("err", err));
+    console.log("e target ", e.target);
+    console.log("reader", reader);
 
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = (e) => {
+      console.log("read as data url", e.target.result);
+    };
+    // reader.readAsDataURL(e.target.files[0]);
+    // reader.onload = (e)=>{
+    //   openModal({type:'addPostImg', props:{base64:e.target.result}} )
+    // }
   };
 
   return (
