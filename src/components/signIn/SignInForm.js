@@ -23,6 +23,7 @@ import { flexCenter } from "../layout/className";
 import FlexRowCenter from "../layout/FlexRowCenter";
 import PrimaryButton from "../elem/PrimaryButton";
 import Img from "../elem/Img";
+import { PATH } from "../../Router";
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const SignInForm = () => {
         console.log("data login", data);
         if (data.status === 200) {
             dispatch(__cleanUp());
-            navigate("/");
+            navigate(PATH.main);
         } else {
           alert(data.message);
         }

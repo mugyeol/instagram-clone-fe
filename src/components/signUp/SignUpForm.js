@@ -31,6 +31,7 @@ import { flexCenter } from "../layout/className";
 import FlexRowCenter from "../layout/FlexRowCenter";
 import PrimaryButton from "../elem/PrimaryButton";
 import Img from "../elem/Img";
+import { PATH } from "../../Router";
 
 const messages = {
   idInvalid: `유효하지 않은 이메일 형식입니다.`,
@@ -114,7 +115,7 @@ const SignUpForm = ({ isLogin }) => {
     console.log(form, "form");
     $signUp(form)
       .then((data) => {
-        data.status === 200 ? navigate("/sign-in") : alert(data.message);
+        data.status === 200 ? navigate(PATH.main) : alert(data.message);
       })
       .catch((err) => console.log("err", err.response.data));
   };
