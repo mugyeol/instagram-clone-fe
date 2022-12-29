@@ -5,16 +5,17 @@ import { modalSelector } from "../redux/modules/modalSlice";
 import Detail from "../components/detail/Detail";
 import AddPost from "../components/addPost/AddPost";
 import AddPostImg from "../components/addPost/AddPostImg";
+import AlertModal from "../components/alert/AlertModal";
 
 const MODAL_COMPONENTS = {
   addPost: AddPost,
   detail: Detail,
   addPostImg: AddPostImg,
+  alert:AlertModal
 };
 
 function ModalContainer() {
   const { type, props } = useSelector(modalSelector);
- console.log('props', props)
 
   if (!type) {
     return null;

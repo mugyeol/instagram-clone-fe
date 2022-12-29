@@ -1,12 +1,12 @@
-
 import StLink from "../components/elem/Link";
+import { PATH } from "../Router";
 
-export const modify = (text) => {
+export const handleContent = (text,nickname) => {
   return text.split(" ").map((string) => {
     if (string.includes("#") || string.includes("@")) {
       return (
         <>
-          <StLink to={`/${string}`}>{string}</StLink>
+          <StLink to={`${PATH.hashtag}/${string}`}>{string}</StLink>
           <span> </span>
         </>
       );

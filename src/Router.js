@@ -3,30 +3,32 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
-import MyPage from "./pages/MyPage";
-import DetailPage from './pages/DetailPage';
-
+import DetailPage from "./pages/DetailPage";
+import ListOfHashTag from "./components/tag/ListOfHashTag";
+import ModalContainer from "./modal/ModalContainer";
 export const PATH = {
-  main:'/',
-  signIn:'/signin',
-  signUp:'/signup',
-  upload:'/upload',
-  detail:'/detail/',
-  mypage:'/mypage/'
-}
+  main: "/",
+  signIn: "/sign-in",
+  signUp: "/sign-up",
+  upload: "/upload",
+  detail: "/detail/",
+  mypage: "/mypage/",
+  hashtag: "/hashtag",
+};
 
 
 const Router = () => {
   return (
     <>
       <BrowserRouter>
-      {/* <AddPostModal/> */}
+        <ModalContainer />
+        {/* <AddPostModal/> */}
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/detail" element={<DetailPage />} />
-          <Route path="/mypage/:userId" element={<MyPage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/hashtag/:tag" element={<ListOfHashTag />} />
         </Routes>
       </BrowserRouter>
     </>

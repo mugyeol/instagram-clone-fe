@@ -9,16 +9,20 @@ const GlobalStyle = createGlobalStyle`
     --ig-primary-background : #000000;
     --ig-secondary-background : #121212;
 
-    --ig-elevated-separator: #363636;
+    --ig-elevated-separator: #363636; 
     --ig-elevated-background:#262626; //38 38 38
 
     --ig-primary-logo: invert(99%) sepia(3%) saturate(4%) hue-rotate(233deg) brightness(101%) contrast(101%);
     --ig-secondary-logo: invert(14%) sepia(11%) saturate(1442%) hue-rotate(315deg) brightness(91%) contrast(101%);
 
+    --ig-elevated-sp-filter :  invert(19%) sepia(5%) saturate(3%) hue-rotate(315deg) brightness(98%) contrast(93%); //#363636
+    --ig-elevated-bg-filter : invert(10%) sepia(14%) saturate(3%) hue-rotate(338deg) brightness(88%) contrast(86%); //#262626
+    --ig-heartfill-filter: invert(44%) sepia(90%) saturate(4091%) hue-rotate(332deg) brightness(101%) contrast(86%); //#ED4956
+
     --ig-primary-text: #fafafa;
     --ig-secondary-text: #000000;
     --ig-third-text:#8E8E8E;
-
+    --ig-taglink-text:#E0F1FF;
     
     --ig-primary-button-background: #0095F6;
     --ig-primary-button-hover: #1877F2;
@@ -32,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
     --ig-light-theme-secondary-text: #262626;
     --ig-light-theme-separator:#DBDBDB;
     
+    --ig-color-red:#ED4956;
 
     --color-yellow: #F8D706;
     --color-gray: #B2B2B2;
@@ -44,8 +49,8 @@ const GlobalStyle = createGlobalStyle`
     --color-subtle-gray:#CCCCCC;
 
     --ig-width-addpost-img-wrapper:60rem; 
-    --ig-post-padding:1.7rem;
-
+    --ig-post-padding:1.5rem;
+    --ig-profile-post:3.5rem
 
   }
 

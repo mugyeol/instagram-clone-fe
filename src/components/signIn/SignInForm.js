@@ -138,7 +138,7 @@ const SignInForm = () => {
                 >
                   로그인
                 </PrimaryButton>
-                <span>or</span>
+                <span style={{color:`var(--ig-third-text)`}}>or</span>
                 <PrimaryButton
                   className="kakaologin"
                   type="button"
