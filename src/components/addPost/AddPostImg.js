@@ -67,7 +67,7 @@ const AddPostImg = (props) => {
           <div>
             <BsArrowLeft
               style={{ cursor: "pointer" }}
-              onClick={() => openModal({ type: "addPost" })}
+              onClick={() => openModal({type:'alert'})}
               size={30}
             />
           </div>

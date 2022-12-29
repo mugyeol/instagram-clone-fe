@@ -14,17 +14,33 @@ const MODAL_COMPONENTS = {
   alert:AlertModal
 };
 
+// function ModalContainer() {
+//   const { type, props } = useSelector(modalSelector);
+
+//   if (!type) {
+//     return null;
+//   }
+
+//   const ModalComponent = MODAL_COMPONENTS[type];
+//   return createPortal(
+//     <>
+//       <ModalComponent {...props} />
+//     </>,
+//     document.getElementById("modal")
+//   );
+// }
 function ModalContainer() {
-  const { type, props } = useSelector(modalSelector);
+  const modalList = useSelector(modalSelector);
 
-  if (!type) {
-    return null;
-  }
+  const renderModal = modalList.map(({type,props})=> {
+    const ModalComponent = MODAL_COMPONENTS[type]
+    return <ModalComponent key={type} {...props}/>
+  })
 
-  const ModalComponent = MODAL_COMPONENTS[type];
+
   return createPortal(
     <>
-      <ModalComponent {...props} />
+      {renderModal}
     </>,
     document.getElementById("modal")
   );
