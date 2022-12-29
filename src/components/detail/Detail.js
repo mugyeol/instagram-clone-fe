@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import FlexColumnCenter from "../layout/FlexColumnCenter";
-import Img from "../elem/Img";
 import ModalWrapper from "../../modal/Modal";
 import HeaderProfile from "./HeaderProfile";
 import { flexStart } from "../layout/className";

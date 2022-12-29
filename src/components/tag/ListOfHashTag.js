@@ -1,30 +1,36 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { profile } from "../../asset/navbar";
 import { __getHashTagList } from "../../redux/modules/hashSlice";
 import Img from "../elem/Img";
 import PrimaryButton from "../elem/PrimaryButton";
 import FlexColumnCenter from "../layout/FlexColumnCenter";
 import FlexRowCenter from "../layout/FlexRowCenter";
 import styled from "styled-components";
+import useModal from "../../modal/hooks/useModal";
 function ListOfHashTag() {
+  const {closeModal, openModal} = useModal()
+  closeModal()
+  const profileImg = useSelector((state) => state.user.profileImg);
+
   const { tag } = useParams();
-  console.log("tag", tag);
   const dispatch = useDispatch();
   const hashTagList = useSelector((state) => state.hashTag.hashTagList);
-  console.log(hashTagList)
+  console.log("hashTagList", hashTagList);
+
+  const postingList = hashTagList.postingBriefList;
+  console.log("postingList", postingList);
   useEffect(() => {
-    dispatch((__getHashTagList('HashTagTest1')))
-  }, []);
+    dispatch(__getHashTagList(tag));
+  }, [dispatch]);
   return (
     <FlexColumnCenter pd={"2rem 4rem"} gap="3rem">
       <FlexRowCenter justify="flex-start" gap="5rem">
-        <Img type="circle-profile" wd="13rem" hg="13rem" src={profile} />
+        <Img type="circle-profile" wd="13rem" hg="13rem" src={profileImg} />
         <FlexColumnCenter wd="80%" align="flex-start" gap="3rem">
           <FlexColumnCenter align="flex-start" gap="2rem">
-            <h1>#tag</h1>
-            <h3>게시물 count</h3>
+            <h1>{hashTagList.hashtag}</h1>
+            <h3>{hashTagList.postingCount}</h3>
           </FlexColumnCenter>
           <div>
             <PrimaryButton style={{ width: "100%" }}>팔로우</PrimaryButton>
@@ -32,21 +38,19 @@ function ListOfHashTag() {
         </FlexColumnCenter>
       </FlexRowCenter>
       <StGrid>
-        <div>
-          <TagImg src={profile} />
-        </div>
-        <div>
-          <TagImg src={profile} />
-        </div>
-        <div>
-          <TagImg src={profile} />
-        </div>
-        <div>
-          <TagImg src={profile} />
-        </div>
-        <div>
-          <TagImg src={profile} />
-        </div>
+        {postingList
+          && postingList.map((post) => (
+              <div>
+                <TagImg onClick={()=> openModal({type:'detail',props:{id:post.id}})} src={post.postingImg} />
+              </div>
+            ))
+          }
+
+        {/* { hashTagList.length>0 && hashTagList.postingBriefList.length>0 ? hashTagList.postingBriefList.map((hash) => (
+          <div>
+            <TagImg src={hash.postingImg} />
+          </div>
+        )) : null} */}
       </StGrid>
     </FlexColumnCenter>
   );
@@ -59,6 +63,7 @@ const StGrid = styled.div`
   display: grid;
   gap: 3rem;
   grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 5rem;
 `;
 const Overlay = styled.div`
   position: fixed;
@@ -69,5 +74,5 @@ const Overlay = styled.div`
 const TagImg = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 30px;
 `;

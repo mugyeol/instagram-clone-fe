@@ -14,9 +14,6 @@ export function connectKakao() {
     redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
   })
 }
-export const login = (form)=>{
-
-}
 
 export const isValidPassword = (pwd)=>{
   return pwd.length>5

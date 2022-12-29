@@ -5,8 +5,6 @@ import Img from "../elem/Img";
 import FlexRowCenter from "../layout/FlexRowCenter";
 
 const Comment = ({ comment }) => {
-  console.log("comment ?");
-  console.log("comment comment ", comment);
   return (
     <FlexRowCenter justify="flex-start" align="flex-start" gap="2rem">
       <Img wd="3.5rem" hg="3.5rem" type="circle-profile" src={profile} />

@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { profile } from "../../asset/navbar";
 import Img from "../elem/Img";
 import Card from "../layout/Card";
 import { flexStart} from '../layout/className';

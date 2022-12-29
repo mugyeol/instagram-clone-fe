@@ -1,5 +1,4 @@
 import React from 'react'
-import { profile } from '../../asset/navbar'
 import Img from '../elem/Img'
 import FlexRowCenter from '../layout/FlexRowCenter'
 import Span from '../elem/Span'

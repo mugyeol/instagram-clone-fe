@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { signInImage } from "../asset/login";
 import Footer from "../components/footer/Footer";
 import SignInForm from "../components/signIn/SignInForm";
-import { flexCenter, flexStart } from "../components/layout/className";
 import SignUpFooter from "../components/signUp/SignUpFooter";
 import FlexColumnCenter from "../components/layout/FlexColumnCenter";
 import FlexRowCenter from "../components/layout/FlexRowCenter";

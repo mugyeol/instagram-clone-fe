@@ -14,9 +14,6 @@ export const $kakaoLogin = async (code) => {
 export const $addPost = async (form) => {
   return await myAxios.post("/api/posting", form);
 };
-// export const $getPost = async (id) => {
-//   return await myAxios.get(`/api/posting/${id}`);
-// };
 
 //data request
 export const $deletePost = async (postId) => {
@@ -31,14 +28,10 @@ export const $getToken = () => {
   return localStorage.getItem("jwt");
 };
 export const $uploadPost = async (dispenser) => {
-  console.log("dispenser", dispenser);
   const data = await myAxios.post(`/post`, dispenser);
-  console.log("response data", data);
   return data;
 };
 export const $updatePost = async (postId, form) => {
-  console.log("dispenser", form);
   const data = await myAxios.put(`/post/${postId}`, form);
-  console.log("response data", data);
   return data;
 };

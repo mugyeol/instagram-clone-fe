@@ -11,10 +11,8 @@ import { __submitComment } from "../../redux/modules/detailSlice";
 function AddComment({ postId }) {
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.detail.comment);
-  console.log('comment',comment)
 
   const onChangeHandler = (e) => {
-    console.log('changehandler')
     dispatch(__typeComment(e.target.value));
   };
   const onsubmitHandler = (e) => {

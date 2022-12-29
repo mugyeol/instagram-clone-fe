@@ -24,12 +24,6 @@ import FlexRowCenter from "../layout/FlexRowCenter";
 import PrimaryButton from "../elem/PrimaryButton";
 import Img from "../elem/Img";
 
-//하단 메세지
-// const messages = {
-//   idInvalid: `입력한 사용자 이름을 사용하는 계정을 찾을 수 없습니다.
-//   사용자 이름을 확인하고 다시 시도하세요.`,
-//   pwdInvalid: "잘못된 비밀번호입니다. 다시 확인하세요.",
-// };
 const SignInForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,7 +33,6 @@ const SignInForm = () => {
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  //form 유효성 체크
   useEffect(() => {
     const identifier = setTimeout(() => {
       setFormIsValid(usernameState.isValid && passwordState.isValid);

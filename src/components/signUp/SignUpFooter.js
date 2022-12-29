@@ -8,7 +8,7 @@ import FlexColumnCenter from "../layout/FlexColumnCenter";
 import FlexRowCenter from "../layout/FlexRowCenter";
 import Img from "../elem/Img";
 
-const SignUpFooter = ({ isLogin, isSignIn }) => {
+const SignUpFooter = ({  isSignIn }) => {
   const navigate = useNavigate();
 
   return (
