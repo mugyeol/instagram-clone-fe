@@ -6,8 +6,8 @@ import SignInPage from "./pages/SignInPage";
 import ModalContainer from "./modal/ModalContainer";
 import HashTagPage from "./pages/HashTagPage";
 export const PATH = {
-  main: "/",
-  signIn: "/sign-in",
+  main: "/main",
+  signIn: "/",
   signUp: "/sign-up",
   upload: "/upload",
   detail: "/detail/",
@@ -23,8 +23,8 @@ const Router = () => {
         <ModalContainer />
         {/* <AddPostModal/> */}
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/hashtag/:tag" element={<HashTagPage />} />
         </Routes>

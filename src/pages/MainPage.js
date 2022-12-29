@@ -15,7 +15,7 @@ const MainPage = () => {
   if ($getToken()) {
     dispatch(__getUser());
   }else{
-    navigate('/sign-in')
+    navigate('/')
   }
   return (
     <Layout>

@@ -8,7 +8,7 @@ const KakaoCallback = () => {
     if (res.statusCode === 200) {
       if (res.data !== null && res.data.startsWith("bearer")) {
         localStorage.setItem("jwt", res.data);
-        navigate("/");
+        navigate("/main");
       }
     } else {
       alert(res.msg);
@@ -16,6 +16,6 @@ const KakaoCallback = () => {
     console.log(res);
   });
 
-  return 
+  return;
 };
 export default KakaoCallback;
